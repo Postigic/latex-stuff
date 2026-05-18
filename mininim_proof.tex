@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    The second player has a winning strategy if and only if the number of sticks
+    equals $4k+1$ for some $k \in \mathbb{N}$; otherwise, the first player wins.
+\end{claim}
+
+\begin{proof}
+    The proof is by strong induction. Let $P(n)$ denote the claim for $n$ sticks.
+
+    \medskip
+    \textbf{Base cases.}
+    \begin{description}
+        \item[$n=1$:] $P_2$ wins immediately.
+        \item[$n=2$:] $P_1$ takes 1; $P_1$ wins.
+        \item[$n=3$:] $P_1$ takes 2; $P_1$ wins.
+        \item[$n=4$:] $P_1$ takes 3; $P_1$ wins.
+        \item[$n=5$:] $P_1$ must leave 2, 3, or 4 sticks, so $P_2$ wins by the above.
+    \end{description}
+
+    \medskip
+    \textbf{Inductive step.}
+    Assume $P(1), P(2), \ldots, P(n)$ hold for some $n \geq 5$; we show $P(n+1)$.
+
+    \medskip
+    \textit{Case 1: $n+1 = 4k+1$.}
+    After $P_1$'s move, the pile has $4k$, $4k-1$, or $4k-2$ sticks.
+    In each subcase $P_2$ can restore the pile to the form $4(k-1)+1$:
+    \begin{description}
+        \item[$4k$ sticks:] $P_2$ takes 3, leaving $4(k-1)+1$.
+        \item[$4k-1$ sticks:] $P_2$ takes 2, leaving $4(k-1)+1$.
+        \item[$4k-2$ sticks:] $P_2$ takes 1, leaving $4(k-1)+1$.
+    \end{description}
+    By the inductive hypothesis $P_2$ wins from $4(k-1)+1$, so $P_2$ wins from $4k+1$.
+
+    \medskip
+    \textit{Case 2: $n+1 \neq 4k+1$.}
+    Then $n+1$ is one of $4k+2$, $4k+3$, or $4k+4$.
+    In each subcase $P_1$ can move directly to $4k+1$:
+    \begin{description}
+        \item[$4k+2$ sticks:] $P_1$ takes 1, leaving $4k+1$.
+        \item[$4k+3$ sticks:] $P_1$ takes 2, leaving $4k+1$.
+        \item[$4k+4$ sticks:] $P_1$ takes 3, leaving $4k+1$.
+    \end{description}
+    By the inductive hypothesis $P_2$ wins from $4k+1$, so $P_1$ wins from each of these.
+
+    \medskip
+    In both cases $P(n+1)$ holds, completing the induction.
+\end{proof}
+
+\end{document}

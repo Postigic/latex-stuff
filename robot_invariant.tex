@@ -1,67 +1,37 @@
 \documentclass{article}
 \usepackage{amsmath, amssymb, amsthm}
 
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
 \begin{document}
 
-\noindent\textbf{Claim.} The robot can never reach $(1,1)$.
+\begin{claim}
+    The robot can never reach $(1,1)$.
+\end{claim}
 
 \begin{proof}
-Define $f(x,y) = 4x + y$. We claim that
-\[
-f(x,y) \equiv 0 \pmod{7}
-\]
-is an invariant of the robot's motion.
+    Define the invariant $f(x,y) = 4x + y$ and observe that $f(0,0) = 0 \equiv 0 \pmod{7}$.
 
-\medskip\noindent\textbf{Base case:} At the starting position $(0,0)$,
-\[
-f(0,0) = 0 \equiv 0 \pmod{7}.
-\]
+    \medskip
+    We show that every move preserves $f(x,y) \equiv 0 \pmod 7$. For each allowed displacement:
 
-\medskip\noindent\textbf{Inductive step:} Suppose the robot is at a position $(x,y)$ such that
-\[
-f(x,y) \equiv 0 \pmod{7}.
-\]
-We show that after one move, the invariant is preserved. Consider each possible move:
+    \[
+    \begin{aligned}
+    (+2,-1):\quad & f(x+2,\, y-1) = f(x,y) + 7 \equiv 0 \pmod{7} \\
+    (-2,+1):\quad & f(x-2,\, y+1) = f(x,y) - 7 \equiv 0 \pmod{7} \\
+    (+1,+3):\quad & f(x+1,\, y+3) = f(x,y) + 7 \equiv 0 \pmod{7} \\
+    (-1,-3):\quad & f(x-1,\, y-3) = f(x,y) - 7 \equiv 0 \pmod{7}
+    \end{aligned}
+    \]
 
-\begin{align*}
-(+2,-1): \quad f(x+2,y-1) &= 4(x+2) + (y-1) \\
-&= 4x + y + 8 - 1 \\
-&= f(x,y) + 7 \\
-&\equiv 0 \pmod{7}.
-\end{align*}
+    In all cases the invariant is preserved, so by induction every reachable
+    position $(x,y)$ satisfies $f(x,y) \equiv 0 \pmod{7}$.
 
-\begin{align*}
-(-2,+1): \quad f(x-2,y+1) &= 4(x-2) + (y+1) \\
-&= 4x + y - 8 + 1 \\
-&= f(x,y) - 7 \\
-&\equiv 0 \pmod{7}.
-\end{align*}
-
-\begin{align*}
-(+1,+3): \quad f(x+1,y+3) &= 4(x+1) + (y+3) \\
-&= 4x + y + 4 + 3 \\
-&= f(x,y) + 7 \\
-&\equiv 0 \pmod{7}.
-\end{align*}
-
-\begin{align*}
-(-1,-3): \quad f(x-1,y-3) &= 4(x-1) + (y-3) \\
-&= 4x + y - 4 - 3 \\
-&= f(x,y) - 7 \\
-&\equiv 0 \pmod{7}.
-\end{align*}
-
-\noindent Thus, in all cases, the invariant is preserved. 
-By induction on the number of moves, every reachable position $(x,y)$ satisfies
-\[
-f(x,y) \equiv 0 \pmod{7}.
-\]
-However,
-\[
-f(1,1) = 4 + 1 = 5 \not\equiv 0 \pmod{7}.
-\]
-Therefore, the position $(1,1)$ is unreachable.
-
+    \medskip
+    However, $f(1,1) = 4 + 1 = 5 \not\equiv 0 \pmod{7}$,
+    so $(1,1)$ is unreachable.
 \end{proof}
 
 \end{document}
