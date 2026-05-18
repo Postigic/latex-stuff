@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+
+\begin{document}
+
+\begin{theorem}[Characterisation of constructible numbers]
+    A real number is constructible by straightedge and compass if and only if it lies in a field obtained from $\mathbb{Q}$ by 
+    a finite sequence of quadratic extensions. In particular, every constructible number is algebraic over $\mathbb{Q}$.
+\end{theorem}
+
+\begin{theorem}[Lindemann--Weierstrass (consequence)]
+    The number $\pi$ is transcendental.
+\end{theorem}
+
+\begin{corollary}
+    $\sqrt{\pi}$ is not constructible.
+\end{corollary}
+
+\begin{proof}
+    If $\sqrt{\pi}$ were constructible, then it would be algebraic over $\mathbb{Q}$. 
+    Since algebraic numbers are closed under multiplication,
+    \[
+    \pi = (\sqrt{\pi})^2
+    \]
+    would also be algebraic. This contradicts the fact that $\pi$ is transcendental. Hence $\sqrt{\pi}$ is not constructible.
+    \end{proof}
+
+    \begin{theorem}
+    It is impossible to construct, using straightedge and compass, a square with the same area as a given circle.
+    \end{theorem}
+
+    \begin{proof}
+    Let a circle of radius $r$ be given. A square of equal area must have side length $s$ satisfying
+    \[
+    s^2 = \pi r^2 \quad \Rightarrow \quad s = r\sqrt{\pi}.
+    \]
+
+    Thus, constructing such a square is equivalent to constructing $\sqrt{\pi}$ from a unit length.
+
+    Since $\sqrt{\pi}$ is not constructible, no such construction is possible.
+\end{proof}
+
+\end{document}
