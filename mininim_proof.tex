@@ -38,7 +38,8 @@
         \item[$4k-1$ sticks:] $P_2$ takes 2, leaving $4(k-1)+1$.
         \item[$4k-2$ sticks:] $P_2$ takes 1, leaving $4(k-1)+1$.
     \end{description}
-    By the inductive hypothesis $P_2$ wins from $4(k-1)+1$, so $P_2$ wins from $4k+1$.
+    By the inductive hypothesis, the player facing $4(k-1)+1$ loses; since $P_2$ has moved
+    there, $P_1$ is the one facing $4(k-1)+1$, so $P_1$ loses and $P_2$ wins.
 
     \medskip
     \textit{Case 2: $n+1 \neq 4k+1$.}
@@ -49,7 +50,8 @@
         \item[$4k+3$ sticks:] $P_1$ takes 2, leaving $4k+1$.
         \item[$4k+4$ sticks:] $P_1$ takes 3, leaving $4k+1$.
     \end{description}
-    By the inductive hypothesis $P_2$ wins from $4k+1$, so $P_1$ wins from each of these.
+    By the inductive hypothesis, the player facing $4k+1$ loses; since $P_1$ has moved there,
+    $P_2$ is the one facing $4k+1$, so $P_2$ loses and $P_1$ wins.
 
     \medskip
     In both cases $P(n+1)$ holds, completing the induction.
