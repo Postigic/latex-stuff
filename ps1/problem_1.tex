@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{definition}{Definition}
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{definition}
+    A real number $r$ is called sensible if there exist positive integers $a$ and $b$
+    such that $\sqrt{a/b} = r$.
+\end{definition}
+
+\begin{claim}
+    $\sqrt[3]{2}$ is not sensible.
+\end{claim}
+
+\begin{proof}
+    Suppose for contradiction that $\sqrt[3]{2}$ is sensible. Then there exist positive 
+    integers $a$ and $b$ such that $\sqrt{a/b} = \sqrt[3]{2}$. Squaring both sides gives:
+    \[
+    \frac{a}{b} = \sqrt[3]{4}
+    \]
+    Since $a/b$ is rational, it follows that $\sqrt[3]{4}$ is rational.
+
+    \medskip
+
+    Since $\sqrt[3]{4}$ is rational, we can write it as a fraction $x/y$ in lowest terms,
+    where $x$ is an integer and $y$ is a positive integer. Therefore, we have:
+
+    \[
+    \begin{aligned}
+    \sqrt[3]{4} &= \frac{x}{y} \\
+    4 &= \frac{x^3}{y^3} \\
+    4y^3 &= x^3
+    \end{aligned}
+    \]
+
+    In the last equation, the left side is even as the coefficient is a multiple of 2.
+    Thus the right side must also be even. Since $x^3$ is even, $x$ itself must be even.
+    Since $x$ is even, we can write $x = 2k$ for some $k \in \mathbb{Z}$. Hence:
+    \[
+    x^3 = (2k)^3 = 8k^3
+    \]
+    Substituting into $4y^3 = x^3$ gives
+    \[
+    4y^3 = 8k^3,
+    \]
+    so $y^3 = 2k^3$, thus $y^3$ is even. Since $y^3$ is even, $y$ itself must be even.
+
+    \medskip
+
+    However, $x$ and $y$ are both even, contradicting that $x/y$ is in lowest terms.
+    Thus $\sqrt[3]{4}$ is irrational, contradicting the assumption that $\sqrt[3]{4}$ 
+    is rational.
+
+    \medskip
+
+    Hence $\sqrt[3]{2}$ is not sensible.
+\end{proof}
+
+\end{document}
