@@ -8,11 +8,32 @@
 \begin{document}
 
 \begin{claim}
-    You can tile an 8 by 8 chessboard with 32 dominoes.
+    You can tile an $8 \times 8$ chessboard with $32$ dominoes.
 \end{claim}
 
 \begin{proof}
+    Partition the board into rows. Each row consists of 8 squares,
+    which can be tiled with 4 horizontal dominoes placed end-to-end.
+    Applying this to all 8 rows yields a valid tiling using 
+    $8 \times 4 = 32$ dominoes, covering all $8 \times 8 = 64$ squares
+    with no overlap.
+\end{proof}
 
+\begin{claim}
+    You cannot tile an $8 \times 8$ chessboard with $31$ dominoes
+    if the opposite corners are removed.
+\end{claim}
+
+\begin{proof}
+    On a standard chessboard, there are 32 black and 32 white squares, 
+    and the two opposite corners share the same colour. Without loss of
+    generality, assume both are white. Removing them leaves 32 black
+    and 30 white squares.
+
+    \medskip Every domino covers exactly one black square and one white square,
+    so any tiling by 31 dominoes covers exactly 31 black and 31 white squares. 
+    This contradicts the board having 32 black and 30 white squares. 
+    Therefore no such tiling exists.
 \end{proof}
 
 \end{document}
