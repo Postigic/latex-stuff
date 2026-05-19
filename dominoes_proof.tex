@@ -12,9 +12,9 @@
 \end{claim}
 
 \begin{proof}
-    Partition the board into rows. Each row consists of 8 squares,
-    which can be tiled with 4 horizontal dominoes placed end-to-end.
-    Applying this to all 8 rows yields a valid tiling using 
+    Partition the board into rows. Each row consists of $8$ squares,
+    which can be tiled with $4$ horizontal dominoes placed end-to-end.
+    Applying this to all $8$ rows yields a valid tiling using 
     $8 \times 4 = 32$ dominoes, covering all $8 \times 8 = 64$ squares
     with no overlap.
 \end{proof}
@@ -25,15 +25,80 @@
 \end{claim}
 
 \begin{proof}
-    On a standard chessboard, there are 32 black and 32 white squares, 
-    and the two opposite corners share the same colour. Without loss of
-    generality, assume both are white. Removing them leaves 32 black
-    and 30 white squares.
+    On a standard $8 \times 8$ chessboard, there are $32$ black and $32$ white 
+    squares. Since opposite corners have row and column indices of the same 
+    parity, they must have the same colour. Without loss of generality, assume 
+    both are white. Removing them leaves $32$ black and $30$ white squares.
 
-    \medskip Every domino covers exactly one black square and one white square,
-    so any tiling by 31 dominoes covers exactly 31 black and 31 white squares. 
-    This contradicts the board having 32 black and 30 white squares. 
+    \medskip
+    
+    Every domino covers exactly one black square and one white square,
+    so any tiling by $31$ dominoes covers exactly $31$ black and $31$ white squares. 
+    This contradicts the board having $32$ black and $30$ white squares. 
     Therefore no such tiling exists.
+\end{proof}
+
+\begin{claim}
+    Given a truncated chessboard, there exists a bipartite graph $G$
+    that has a perfect matching if and only if the chessboard can be
+    tiled with dominoes.
+\end{claim}
+
+\begin{proof}
+    Colour the truncated chessboard like a standard chessboard. Let $B$
+    and $W$ be the sets of remaining black and white squares respectively.
+    Construct a bipartite graph $G = (B \cup W, E)$ where two squares
+    $b \in B$ and $w \in W$ are joined by an edge if and only if they
+    are adjacent on the board.
+
+    \medskip
+    
+    Suppose first that $G$ has a perfect matching $M$.
+    Since every edge in $M$ joins two adjacent squares, we can place a
+    domino on each such pair of squares. Because $M$ is perfect, every
+    square is incident to exactly one edge of $M$, so every square is
+    covered by exactly one domino. Hence the chessboard is tiled by
+    dominoes.
+
+    \medskip
+    
+    Conversely, suppose that the chessboard is tiled by dominoes.
+    Each domino covers exactly two adjacent squares, one black and one white,
+    so each domino determines an edge of $G$. Since the dominoes are disjoint
+    and cover every square exactly once, the corresponding edges form a perfect
+    matching of $G$.
+
+    \medskip
+    
+    Therefore the chessboard can be tiled by dominoes if and only if
+    $G$ has a perfect matching.
+\end{proof}
+
+\begin{claim}
+    A truncated chessboard can be tiled with dominoes if and only if for every
+    set $S$ of black squares, there are at least $|S|$ white squares neighbouring
+    $S$, and vice versa.
+\end{claim}
+
+\begin{proof}
+    Let $G$ be the bipartite graph constructed in Claim 3. By Claim 3, the board is
+    tilable with dominoes if and only if $G$ has a perfect matching.
+
+    \medskip
+
+    By Hall's theorem, $G$ has a perfect matching if and only if for every
+    $S \subseteq B$, $|N(S)| \geq |S|$, and for every $S \subseteq W$,
+    $|N(S)| \geq |S|$.
+
+    \medskip
+
+    Since edges in $G$ correspond to adjacent squares on the chessboard,
+    $N(S)$ is precisely the set of white squares neighbouring $S$. Hence
+    the condition $|N(S)| \geq |S|$ is equivalent to there being at least
+    $|S|$ white squares neighbouring $S$, and vice versa. Therefore a
+    truncated chessboard can be tiled with dominoes if and only if for
+    every set $S$ of black squares, there are at least $|S|$ white squares
+    neighbouring $S$, and vice versa.
 \end{proof}
 
 \end{document}
