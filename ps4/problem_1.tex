@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    If $f : A \to B$ and $g : B \to C$ are bijections, then so is $g \circ f : A \to C$.
+\end{claim}
+
+\begin{proof}
+    To show that $g \circ f$ is a bijection, we show that it is both injective and 
+    surjective.
+
+    \medskip
+    \textbf{Injectivity.}
+    Suppose $g(f(x_1)) = g(f(x_2))$. Since $g$ is injective, $f(x_1) = f(x_2)$. Since $f$
+    is injective, $x_1 = x_2$. Hence $g \circ f$ is injective.
+
+    \medskip
+    \textbf{Surjectivity.}
+    Let $c \in C$ be arbitrary. Since $g$ is surjective, there exists $b \in B$ such that
+    $g(b) = c$. Since $f$ is surjective, there exists $a \in A$ such that $f(a) = b$. Then
+    $(g \circ f)(a) = g(b) = c$. Hence $g \circ f$ is surjective.
+
+    \medskip
+
+    Since $g \circ f$ is both injective and surjective, it is a bijection.
+\end{proof}
+
+\begin{claim}
+    If $f : A \to B$ is a bijection, then there exists a bijection $e : B \to A$ such that
+    $e \circ f = I_A$.
+\end{claim}
+
+\begin{proof}
+    Define $e : B \to A$ by $e(b) = a$, where $a \in A$ such that $f(a) = b$. Since $f$ is
+    a bijection, for every $b \in B$ there exists a unique $a \in A$ such that $f(a) = b$.
+    Hence $e$ is well-defined. To show that $e$ is a bijection, we show that it is both 
+    injective and surjective.
+
+    \medskip
+    \textbf{Injectivity.}
+    Suppose $e(b_1) = e(b_2)$. Let $a_1, a_2 \in A$ be such that $f(a_1) = b_1$ and $f(a_2) 
+    = b_2$. Then by definition of $e$, $a_1 = a_2$. Since $f(a_1) = b_1$ and $f(a_2) = b_2$, 
+    $b_1 = b_2$. Hence $e$ is injective.
+
+    \medskip
+    \textbf{Surjectivity.}
+    Let $a \in A$ be arbitrary. By definition of $f$, $f(a) = b \in B$, so $e(b) = e(f(a)) 
+    = a$. Hence $e$ is surjective.
+
+    \medskip
+
+    Therefore for any $a \in A$, $(e \circ f)(a) = e(f(a)) = a = I_A(a)$ by definition of $e$. 
+    Thus such a bijection $e : B \to A$ exists. 
+\end{proof}
+
+\begin{claim}
+    Graph isomorphism is an equivalence.
+\end{claim}
+
+\begin{proof}
+    
+\end{proof}
+
+\end{document}
