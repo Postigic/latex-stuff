@@ -60,11 +60,33 @@
 \end{proof}
 
 \begin{claim}
-    Graph isomorphism is an equivalence.
+    Graph isomorphism is an equivalence relation.
 \end{claim}
 
 \begin{proof}
+    Let $G,H,K$ be graphs. To show that graph isomorphism is an equivalence, we show that it is 
+    reflexive, symmetric, and transitive.
+
+    \medskip
+    \textbf{Reflexivity.}
+    The identity $I_G : V(G) \to V(G)$ is a bijection. Let $uv \in E(G)$. Since $I_G(u) = u$ and 
+    $I_G(v) = v$, $I_G(u)I_G(v) = uv \in E(G)$. Hence $I_G$ is an isomorphism and $G \sim G$.
     
+    \medskip
+    \textbf{Symmetry.}
+    Suppose $G \sim H$, so there exists an isomorphism $f : V(G) \to V(H)$. From Claim 2, $f^{-1} 
+    : V(H) \to V(G)$ is a bijection. Let $uv \in E(H)$. Since $f$ is an isomorphism, 
+    $f^{-1}(u)f^{-1}(v) \in E(G)$. Hence $f^{-1}$ is an isomorphism and $H \sim G$.
+
+    \medskip
+    \textbf{Transitivity.}
+    Suppose $G \sim H$ via $f : V(G) \to V(H)$ and $H \sim K$ via $g : V(H) \to V(K)$. From Claim 1, 
+    $g \circ f : V(G) \to V(K)$ is a bijection. Let $uv \in E(G)$. Since $f$ is an isomorphism, 
+    $f(u)f(v) \in E(H)$. Since $g$ is an isomorphism, $g(f(u))g(f(v)) \in E(K)$. Hence $g \circ f$ 
+    is an isomorphism and $G \sim K$.
+
+    \medskip
+    Hence graph isomorphism is an equivalence relation.
 \end{proof}
 
 \end{document}
