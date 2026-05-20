@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    The natural numbers partially ordered by divisibility has an infinite chain.
+\end{claim}
+
+\begin{proof}
+    Consider the subset
+    \[
+        C = \{2^n \mid n \ge 0\}
+        = \{1,2,4,8,\dots\}.
+    \]
+    This set is infinite. Moreover, for any $2^a,2^b \in C$, either $a \le b$ or 
+    $b \le a$. If $a \le b$, then
+    \[
+        2^b = 2^a \cdot 2^{\,b-a},
+    \]
+    so $2^a \mid 2^b$. Similarly, if $b \le a$, then $2^b \mid 2^a$.
+
+    \medskip
+    
+    Hence every pair of elements of $C$ is comparable under divisibility, so $C$ is 
+    an infinite chain.
+\end{proof}
+
+\begin{claim}
+    The natural numbers partially ordered by divisibility has an infinite antichain.
+\end{claim}
+
+\begin{proof}
+    Consider the subset
+    \[
+        C = \{ n \in \mathbb{N} \mid \text{$n$ is prime} \}
+    \]
+    By Euclid's theorem, there are infinitely many primes, so $C$ is infinite.
+    Let $p,q \in C$ with $p \neq q$. Since $p$ is prime, $p > 1$, and its only 
+    positive divisors are $1$ and $p$. Hence if $p \mid q$, then $p = 1$ or 
+    $p = q$. But $p \neq q$ and $p > 1$, so $p \nmid q$. Similarly, $q \nmid p$.
+
+    \medskip
+
+    Hence no two distinct elements of $C$ are comparable under divisibility, so 
+    $C$ is an infinite antichain.
+\end{proof}
+
+\begin{claim}
+    In the poset $([n], \mid)$, the set
+    \[
+    C = \{ 2^k \mid k = 0,1,\dots,\lfloor \log_2 n \rfloor \}
+    \]
+    is a maximal chain.
+\end{claim}
+
+\begin{proof}
+    Suppose for contradiction that $C$ is not maximal. Then there exists $x \in [n] 
+    \setminus C$ such that $C \cup \{x\}$ is a chain. Hence $x$ is comparable with 
+    every element of $C$. There are three cases:
+
+    \medskip
+    \textit{Case 1: $x \mid 1$.}
+    Since $x \geq 1$ and $x \mid 1$, hence $x = 1 \in C$. This is a contradiction.
+
+    \medskip
+    \textit{Case 2: $2^{\lfloor \log_2 n \rfloor} \mid x$.}
+    Since $x \in [n]$, we have $2^{\lfloor \log_2 n \rfloor} \leq x \leq n <
+    2^{\lfloor \log_2 n \rfloor + 1}$, so $x = 2^{\lfloor \log_2 n \rfloor} \in C$. 
+    This is a contradiction.
+
+    \medskip
+    \textit{Case 3: $2^k \mid x$ and $x \mid 2^{k+1}$ for some $k \in \{0, 1, 
+    \dots, \lfloor \log_2 n \rfloor - 1\}$.}
+    Since $x \mid 2^{k+1}$, $x$ must be a divisor of $2^{k+1}$. The divisors of 
+    $2^{k+1}$ are exactly $1, 2, 4, \dots, 2^{k+1}$, so $x \in \{2^0, 2^1, 2^2, 
+    \dots, 2^{k+1}\}$. Since $2^k \mid x$, we have $x \geq 2^k$, so $x \in \{2^k, 
+    2^{k+1}\} \subset C$. This is a contradiction.
+
+    \medskip
+
+    In all cases, $x \in C$, contradicting $x \notin C$. Hence $C$ is maximal.
+\end{proof}
+
+\begin{claim}
+    In the poset $([n], \mid)$, the set
+    \[
+        A = \left\{ m \in [n] \mid \frac{n}{2} < m \leq n \right\}
+    \]
+    is an antichain.
+\end{claim}
+
+\begin{proof}
+    Suppose for contradiction that $A$ is not an antichain. Then there exist
+    $a, b \in A$ with $a \neq b$ such that $a \mid b$ or $b \mid a$. Without
+    loss of generality, assume $a \mid b$. Then $b \geq 2a$. Since $a \in A$,
+    we have $a > \frac{n}{2}$, so $b \geq 2a > n$. But $b \in [n]$, a
+    contradiction.
+
+    \medskip
+
+    Hence $A$ is an antichain.
+\end{proof}
+
+\end{document}
