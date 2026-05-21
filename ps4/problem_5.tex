@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Every planar graph has a node of degree at most 5.
+\end{claim}
+
+\begin{proof}
+    Let G be a planar graph. Suppose for contradiction that all vertices of G 
+    have degree at least 6. By the Handshaking Lemma:
+    \[
+    \sum_{v \in V} \deg(v) = 2|E|
+    \]
+    By our assumption, since every vertex has at least degree 6:
+    \[
+    2|E| = \sum_{v \in V} \deg(v) \geq 6|V|
+    \]
+    Simplifying, we get $2|E| \geq 6|V| \implies |E| \geq 3|V|$. Since G is planar, 
+    we know that $|E| \leq 3|V| - 6$ from Euler's formula. However, $|E| \geq 3|V| 
+    > 3|V| - 6 \geq |E| \implies |E| > |E|$, a contradiction.
+    
+    \medskip
+
+    Hence every planar graph has a node of degree at most 5.
+\end{proof}
+
+\begin{claim}
+    Any planar graph can be coloured with six colours.
+\end{claim}
+
+\begin{proof}
+    We use induction on the number of vertices in the planar graph, which we denote 
+    by $n$. Let $P(n)$ be the proposition that an $n$-vertex planar graph is 
+    $6$-colourable.
+
+    \medskip
+    \textbf{Base case:}
+    A $1$-vertex planar graph has degree $0$, hence it is $1$-colourable. Thus $P(1)$ 
+    is true.
+
+    \medskip
+    \textbf{Inductive step:}
+    Assume that $P(n)$ is true, and let $G$ be an $(n+1)$-vertex planar graph. By 
+    Claim 1, $G$ has a node $v$ of degree at most $5$. Remove $v$ from $G$ and its
+    incident edges, leaving an $n$-vertex planar graph $G'$. By the inductive 
+    hypothesis, $G'$ is $6$-colourable. Now put $v$ back along with its incident 
+    edges. Because $v$ has degree at most $5$, $v$ has at most $5$ adjacent vertices, 
+    using at most $5$ colours, leaving at least $1$ colour for $v$. Hence $G$ is 
+    $6$-colourable.
+
+    \medskip
+
+    Hence any planar graph can be coloured with six colours.
+\end{proof}
+
+\end{document}
