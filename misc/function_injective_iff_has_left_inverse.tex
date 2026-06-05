@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $f : A \to B$ be a function where $A$ is nonempty. Then $f$ is injective 
+    if and only if it has a left inverse.
+\end{claim}
+
+\begin{proof}
+    Assume $f$ is injective. We construct a function $g : B \to A$ as follows.
+    
+    \medskip
+
+    For each $b \in \operatorname{im}(f)$, there exists a unique $a \in A$ such that 
+    $f(a) = b$. Then define $g(b) = a$.
+
+    \medskip
+
+    For each $b \notin \operatorname{im}(f)$, define $g(b) = a$ arbitrarily for some $a 
+    \in A$.
+
+    \medskip
+
+    We now verify that $g$ is a left inverse of $f$. Let $x \in A$. Then $f(x) \in 
+    \operatorname{im}(f)$, so by construction of $g$, $g(f(x)) = x$. Hence $g \circ f = 
+    \operatorname{id}_A$.
+
+    \medskip
+
+    Assume a left inverse $g : B \to A$ exists such that $g \circ f = \operatorname{id}_A$. 
+    Let $a_1, a_2 \in A$ be such that $f(a_1) = f(a_2)$. Applying $g$ to both sides 
+    gives $g(f(a_1)) = g(f(a_2))$. Since $g \circ f = \operatorname{id}_A$, this gives $a_1 
+    = a_2$. Therefore $f$ is injective.
+
+    \medskip
+
+    Hence $f$ is injective if and only if it has a left inverse.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    The number of odd-degree vertices in a simple graph is even.
+\end{claim}
+
+\begin{proof}
+    Let $G$ be a simple graph. We first sum all the vertex degrees. By the Handshaking Lemma:
+    \[
+    \sum_{v \in V} \deg(v) = 2|E|
+    \]
+    Hence the sum is even.
+
+    \medskip
+
+    Let $V_e$ be the set of vertices in $G$ of even degree, and let $V_o$ be the set of vertices 
+    in $G$ of odd degree. Then:
+    \[
+    \sum_{v \in V} \deg(v) = \sum_{v \in V_e} \deg(v) + \sum_{v \in V_o} \deg(v)
+    \]
+    We know that $\sum_{v \in V} \deg(v)$ is even, and $\sum_{v \in V_e} \deg(v)$ is also even 
+    as the sum of even numbers is even. Hence $\sum_{v \in V_o} \deg(v)$ must be even as well.
+    Each term in $\sum_{v \in V_o} \deg(v)$ is odd, so the sum has the same parity as $|V_o|$. 
+    Since the sum is even, $|V_o|$ is even.
+
+    \medskip
+
+    Hence the number of odd-degree vertices in $G$ is even.
+\end{proof}
+
+\end{document}
