@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $A$ be a set and let $\mathcal{P}(A)$ denote its power set. $|A| < |\mathcal{P}(A)|$ for any set $A$.
+\end{claim}
+
+\begin{proof}
+    We prove the statement by showing that there is an injection from $A$ to $\mathcal{P}(A)$, and that there 
+    is no surjection from $A$ to $\mathcal{P}(A)$.
+
+    \medskip
+
+    \textbf{Injection exists.} Define $f : A \to \mathcal{P}(A)$ by $f(a) = \{a\}$. If $f(a_1) = f(a_2)$, then 
+    $\{a_1\} = \{a_2\}$, which implies $a_1 = a_2$. Hence $f$ is injective.
+
+    \medskip
+
+    \textbf{No surjection exists.} Suppose for contradiction that there was a surjection $f : A \to 
+    \mathcal{P}(A)$. Let $D \coloneq \{a \in A \mid a \notin f(a)\}$. So by definition:
+    \[
+    (a \in D) \iff (a \notin f(a))
+    \]
+    But $D \subseteq A$ by definition and hence is a member of $\mathcal{P}(A)$. Since $f$ is surjective, this 
+    means $D = f(a)$ for some $a \in A$. Substituting in:
+    \[
+    (a \in f(a)) \iff (a \notin f(a))
+    \]
+    A contradiction. Therefore there is no surjection from $A$ to $\mathcal{P}(A)$.
+
+    \medskip
+
+    Since there is an injection, $|A| \leq |\mathcal{P}(A)|$. Since there is no surjection, there is no bijection, 
+    so $|A| \neq |\mathcal{P}(A)|$. Thus $|A| < |\mathcal{P}(A)|$.
+\end{proof}
+
+\end{document}

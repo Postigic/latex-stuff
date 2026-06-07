@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $R$ be an equivalence relation on $A$. The equivalence classes of $R$ form a partition of $A$.
+\end{claim}
+
+\begin{proof}
+    We show that every equivalence class of $R$ is non-empty, every element of $A$ belongs to an equivalence class,
+    and any two distinct equivalence classes are disjoint.
+
+    \medskip
+
+    \textbf{Non-empty and coverage.} Let $a \in A$. Since $R$ is reflexive, $aRa$, so $a \in [a]$. Hence every 
+    equivalence class is nonempty and every element of $A$ belongs to at least one equivalence class.
+
+    \medskip
+
+    \textbf{Disjoint.} Suppose $[a] \cap [b] \neq \emptyset$. Then there exists $c \in A$ such that $c \in [a]$
+    and $c \in [b]$. So $cRa$ and $cRb$. Since $R$ is symmetric, $cRa$ implies $aRc$. Since $R$ is transitive, 
+    $aRc$ and $cRb$ implies $aRb$.
+
+    \medskip
+    
+    If $x \in [a]$, then $aRx$. Since $R$ is symmetric, $aRx$ implies $xRa$.
+    Since $R$ is transitive, $xRa$ and $aRb$ implies $xRb$, so $x \in [b]$. Hence $[a] \subseteq [b]$. Similarly, 
+    $[b] \subseteq [a]$. Thus $[a] = [b]$.
+
+    \medskip
+
+    Therefore the equivalence classes of $R$ form a partition of $A$.
+\end{proof}
+
+\end{document}

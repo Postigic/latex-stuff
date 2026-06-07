@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $G$ be a connected graph. $G$ has an Eulerian circuit if and only if every vertex of $G$ has even degree.
+\end{claim}
+
+\begin{proof}
+    Assume $G$ has an Eulerian circuit $C$.
+
+    \medskip
+
+    Consider any arbitrary vertex $v$. Every time the circuit arrives at $v$, it must also leave $v$ along a 
+    different edge. Thus the edges incident to $v$ can be paired up as one edge used to enter $v$ and one edge used 
+    to leave $v$. Therefore the incident edges occur in pairs, meaning $\deg(v)$ is even. Since $v$ is arbitrary, 
+    every vertex of $G$ has even degree.
+
+    \medskip
+
+    Assume every vertex of $G$ has even degree. We then induct on the number of edges in $G$.
+
+    \medskip
+
+    \textbf{Base case:} If $G$ has no edges, i.e. one vertex, the statement is trivially true.
+
+    \medskip
+
+    \textbf{Inductive step:} We assume that every connected graph with $n$ edges and even degree vertices has an 
+    Eulerian circuit. Let $H$ be a connected graph with $n+1$ edges and even degree vertices. Since every vertex 
+    has even degree, every vertex has degree at least $2$. Hence any maximal path in $H$ must eventually revisit a 
+    vertex, forming a cycle $C$.
+
+    \medskip
+    
+    Remove the edges of $C$ from $H$, leaving a graph $H'$. Let $H_1,\dots,H_k$ be the connected components of $H'$. 
+    Each $H_i$ is connected by definition, and has all even degrees since removing the edges of $C$ reduces the 
+    degree of cycle vertices by exactly $2$. By the inductive hypothesis, each $H_i$ has an Eulerian circuit. Since 
+    $H$ was connected, each $H_i$ shares at least one vertex with $C$. By splicing the Eulerian circuit of each $H_i$
+    into $C$, we obtain an Eulerian circuit for $H$. Therefore $H$ has an Eulerian circuit.
+
+    \medskip
+
+    Hence $G$ has an Eulerian circuit if and only if every vertex of $G$ has even degree.
+\end{proof}
+
+\end{document}
