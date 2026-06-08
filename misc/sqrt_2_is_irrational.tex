@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    $\sqrt{2}$ is irrational.
+\end{claim}
+
+\begin{proof}
+    Suppose for contradiction that $\sqrt{2}$ is rational. Then there exist $a, b \in \mathbb{Z}$ such that 
+    $a/b = \sqrt{2}$ and $a/b$ is in lowest terms. Squaring both sides gives:
+    \[
+    \begin{aligned}
+    \frac{a^2}{b^2} &= 2 \\
+    a^2 &= 2b^2
+    \end{aligned}
+    \]
+    Since $2b^2$ is even, $a^2$ must also be even. Since $a^2$ is even, $a$ itself must be even; if $a$ were 
+    odd then $a^2$ would be odd. Since $a$ is even, we can write $a = 2k$ for some $k \in \mathbb{Z}$. Hence:
+    \[
+    a^2 = (2k)^2 = 4k^2
+    \]
+    Substituting into $a^2 = 2b^2$ gives:
+    \[
+    4k^2 = 2b^2
+    \]
+    So $b^2 = 2k^2$, implying that $b^2$ is even. Since $b^2$ is even, $b$ itself must be even; if $b$ were 
+    odd then $b^2$ would be odd. However, since $a$ and $b$ are even, $a/b$ cannot be in lowest terms. A 
+    contradiction.
+
+    \medskip
+
+    Hence $\sqrt{2}$ is irrational.
+\end{proof}
+
+\end{document}
