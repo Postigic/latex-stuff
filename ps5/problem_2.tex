@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    $\gcd(ka, kb) = k \cdot \gcd(a, b)$ for all $k > 0$.
+\end{claim}
+
+\begin{proof}
+    Let $d = \gcd(a, b)$. Then $d \mid a$ and $d \mid b$, so $kd \mid ka$ and $kd \mid kb$. Hence $kd$ is a common
+    divisor of $ka$ and $kb$.
+
+    \medskip
+
+    Since $d = \gcd(a, b)$, there exist integers $x, y$ such that:
+    \[
+    ax + by = d
+    \]
+    Multiplying by $k$:
+    \[
+    kax + kby = kd
+    \]
+    Let $c$ be an arbitrary common divisor of $ka$ and $kb$. Then $c | kax$ and $c | kby$, so $c | kd$. Therefore 
+    every common divisor of $ka$ and $kb$ divides $kd$, and hence is at most $kd$. Since $kd$ itself is a common 
+    divisor, it is the greatest common divisor.
+    
+    \medskip
+
+    Hence $\gcd(ka, kb) = k \cdot \gcd(a, b)$.
+\end{proof}
+
+\end{document}
