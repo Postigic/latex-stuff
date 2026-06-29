@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+\newtheorem*{corollary}{Corollary}
+
+\begin{document}
+
+\begin{claim}
+    Let $n = p \cdot q$ where $p, q$ are both odd primes and $x = e \cdot d - 1$ where $e$ is the public key and
+    $d$ is the private key of the RSA protocol. Then $\phi(n) \mid x$.
+\end{claim}
+
+\begin{proof}
+    By definition of the RSA private key, $d$ is the modular inverse of $e$ modulo $\phi(n)$. Hence:
+    \[
+    ed \equiv 1 \pmod{\phi(n)}
+    \]
+    Then it follows that:
+    \[
+    \phi(n) \mid (ed - 1)
+    \]
+    Since $x = e \cdot d - 1$, substituting in gives us:
+    \[
+    \phi(n) \mid x
+    \]
+
+    \medskip
+
+    Hence $\phi(n) \mid x$.
+\end{proof}
+
+\begin{claim}
+    $4 \mid x$
+\end{claim}
+
+\begin{proof}
+    By definition of $\phi(n)$:
+    \[
+    \phi(n) = (p - 1)(q - 1)
+    \]
+    Since $p$ and $q$ are odd, $p - 1$ and $q - 1$ are even. Therefore $2 \mid p - 1$ and $2 \mid q - 1$. Hence:
+    \[
+    4 = 2 \cdot 2 \mid (p - 1)(q - 1) = \phi(n)
+    \]
+    Since $4 \mid \phi(n)$ and, by Claim 1, $\phi(n) \mid x$, it follows by transitivity of divisibility 
+    that $4 \mid x$.
+
+    \medskip
+
+    Hence $4 \mid x$.
+\end{proof}
+
+\begin{claim}
+    If $\gcd(r, n) = 1$, then $r^{x} \equiv 1 \pmod{n}$.
+\end{claim}
+
+\begin{proof}
+    By Claim 1, $\phi(n) \mid x$. Hence by the definition of divisibility there exists an integer $k$ such that:
+    \[
+    x = k \cdot \phi(n)
+    \]
+    Since $\gcd(r, n) = 1$, by Euler's theorem:
+    \[
+    r^{\phi(n)} \equiv 1 \pmod{n}
+    \]
+    Raising both sides to the power $k$:
+    \[
+    \begin{aligned}
+    (r^{\phi(n)})^{k} &\equiv 1^{k} \pmod{n} \\
+    r^{k \cdot \phi(n)} &\equiv 1 \pmod{n} \\
+    \end{aligned}
+    \]
+    Since $x = k \cdot \phi(n)$,
+    \[
+    r^{x} \equiv 1 \pmod n.
+    \]
+
+    \medskip
+
+    Hence if $\gcd(r, n) = 1$, then $r^{x} \equiv 1 \pmod{n}$.
+\end{proof}
+
+\begin{claim}
+    If $y$ is a nontrivial square root of $1 \pmod{n}$, then you can factor $n$.
+\end{claim}
+
+\begin{proof}
+    By definition of $y$:
+    \[
+    y^{2} \equiv 1 \pmod{n}
+    \]
+    Thus:
+    \[
+    n \mid (y^{2} - 1)
+    \]
+    Since $n = pq$ from Claim 1, substituting in gives:
+    \[
+    pq \mid (y^{2} - 1)
+    \]
+    Factoring $y^{2} - 1$ gives:
+    \[
+    pq \mid (y - 1)(y + 1)
+    \]
+
+    \medskip
+
+    Since $pq \mid (y - 1)(y + 1)$, $p \mid (y - 1)(y + 1)$ and $q \mid (y - 1)(y + 1)$. Since $p$ and $q$ are prime, 
+    by Euclid's lemma:
+    \[
+    p \mid (y - 1) \quad \text{or} \quad p \mid (y + 1)
+    \]
+    Similarly:
+    \[
+    q \mid (y - 1) \quad \text{or} \quad q \mid (y + 1)
+    \]
+    
+    \medskip
+
+    Suppose $p \mid (y - 1)$ and $q \mid (y - 1)$. Since $p$ and $q$ are distinct primes:
+    \[
+    pq \mid (y - 1)
+    \]
+    As $n = pq$, it follows that:
+    \[
+    n \mid (y - 1)
+    \]
+    Hence:
+    \[
+    y \equiv 1 \pmod{n}
+    \]
+    However, this contradicts the assumption that $y$ is a nontrivial square root of $1 \pmod{n}$. Therefore this 
+    case is impossible.
+
+    \medskip
+
+    Similarly, if $p \mid (y + 1)$ and $q \mid (y + 1)$, then:
+    \[
+    pq \mid (y + 1)
+    \]
+    Then:
+    \[
+    n \mid (y + 1)
+    \]
+    Thus:
+    \[
+    y \equiv -1 \pmod{n}
+    \]
+    Which again, contradicts the assumption that $y$ is a nontrivial square root of $1 \pmod{n}$. Therefore this 
+    case is also impossible.
+
+    \medskip
+
+    Therefore, exactly one of $p$ and $q$ divides $y - 1$ and the other divides $y + 1$. Without loss of generality, 
+    suppose $p \mid (y - 1)$ and $q \mid (y + 1)$. Since $p \mid (y - 1)$, $p \mid n$, and $q \nmid (y - 1)$, 
+    the only prime divisor of $n$ that divides $y - 1$ is $p$. Hence:
+    \[
+    \gcd(y - 1, n) = p
+    \]
+    Likewise for $q$:
+    \[
+    \gcd(y + 1, n) = q
+    \]
+
+    \medskip
+
+    Therefore if $y$ is a nontrivial square root of $1 \pmod{n}$, you can factor $n$.
+\end{proof}
+
+\begin{corollary}
+    If, in addition to knowing $n$ and the public key $e$, you also knew the private key $d$, then you can factor $n$.
+\end{corollary}
+
+\begin{proof}
+    By the given statement, at least half of the admissable choices of $r$ produce a nontrivial square root of $1 
+    \pmod{n}$. By Claim 4, any such square root yields a factorisation of $n$. Hence repeated random choices of $r$ 
+    eventually factor $n$.
+\end{proof}
+
+\end{document}
