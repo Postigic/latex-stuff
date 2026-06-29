@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    There exist arbitrarily long runs of consecutive composite numbers.
+\end{claim}
+
+\begin{proof}
+    Let $n \ge 2$ be arbitrary, and consider the $n-1$ consecutive integers
+    \[
+    n!+2,\; n!+3,\; \dots,\; n!+n
+    \]
+    For each integer $k$ with $2 \le k \le n$, $k$ is one of the factors of
+    \[
+    n! = \prod_{i=1}^{n} i
+    \]
+    so $k \mid n!$. Thus
+    \[
+    n! \equiv 0 \pmod{k}
+    \]
+    and therefore
+    \[
+    n! + k \equiv 0 + k \equiv 0 \pmod{k}
+    \]
+    Hence $k \mid (n!+k)$.
+
+    \medskip
+
+    Moreover,
+    \[
+    n!+k > k,
+    \]
+    since $n! \ge 2$ and $k \ge 2$. Therefore $k$ is a proper divisor of $n!+k$, so each integer 
+    is composite.
+
+    \medskip
+
+    Since $n$ was arbitrary, there exist arbitrarily long runs of consecutive composite numbers.
+\end{proof}
+
+\end{document}
