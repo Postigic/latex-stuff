@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    If a Harvard BS graduate starts with an annual salary of $\$140{,}000$ and receives
+    a guaranteed $\$25{,}000$ raise each year, while an MIT SB graduate starts with
+    $\$100{,}000$ and receives a guaranteed $15\%$ raise each year, then after working
+    the same number of years, the MIT SB graduate will eventually earn more in total.
+\end{claim}
+
+\begin{proof}
+    Let $n$ denote the number of years both graduates work. The Harvard BS graduate's
+    annual salary grows linearly, so the total earnings after $n$ years are $O(n^2)$.
+
+    \medskip
+
+    The MIT SB graduate's annual salary grows exponentially. Hence the total earnings
+    after $n$ years are at least as large as the final year's salary, i.e. 
+    \[
+    100000(1.15)^{n - 1} = \Theta((1.15)^n)
+    \]
+
+    \medskip
+
+    Since
+    \[
+        n^2 = o((1.15)^n)
+    \]
+    exponential growth eventually dominates quadratic growth. Thus, for
+    sufficiently large $n$, the MIT SB graduate's total earnings exceed those of the
+    Harvard BS graduate.
+\end{proof}
+
+\begin{claim}
+    Assuming the bankrate is fixed at $3\%$ per year, the MIT graduate's salary package 
+    is better than the Harvard graduate's salary package when $n \geq 16$. 
+\end{claim}
+
+\begin{proof}
+    Let
+    \[
+    H_n = \sum_{k=0}^{n-1}\frac{140000 + 25000k}{1.03^k}
+    \]
+    and
+    \[
+    M_n = \sum_{k=0}^{n-1}\frac{100000(1.15)^k}{1.03^k}
+    \]
+    denote the present values of the Harvard and MIT salary packages respectively and 
+    define $D_n = H_n - M_n$.
+
+    \medskip
+
+    Using the closed forms for a finite geometric series and a finite arithmetic-geometric 
+    series, we compute
+    \[
+    D_{15} > 0 \quad \text{and} \quad D_{16} < 0
+    \]
+
+    \medskip
+
+    Now we show that $D_n$ is strictly decreasing for all $n \ge 16$. Since
+    \[
+    D_{n+1} - D_n = \frac{140000 + 25000n - 100000(1.15)^n}{1.03^n}
+    \]
+    it suffices to prove
+    \[
+    100000(1.15)^n > 140000 + 25000n
+    \]
+    for every $n \ge 16$.
+
+    \medskip
+
+    This inequality holds when $n = 16$. Moreover, if it holds for some $n\ge16$, then
+    \[
+    \begin{aligned}
+    100000(1.15)^{n + 1} &= 1.15 \cdot 100000(1.15)^n \\
+    &> 1.15(140000 + 25000n) \\
+    &= 161000 + 28750n \\
+    &> 165000 + 25000n \\
+    &= 140000 + 25000(n + 1)
+    \end{aligned}
+    \]
+    since
+    \[
+    (161000 + 28750n) - (165000 + 25000n) = 3750n - 4000 > 0
+    \]
+    for every $n \ge 16$. Hence, by induction,
+    \[
+    100000(1.15)^n > 140000 + 25000n
+    \]
+    for all $n \ge 16$. Therefore $D_n$ is strictly decreasing for all $n \ge 16$. 
+    Since $D_{16} < 0$, it follows that $D_n < 0$ for all $n \ge 16$.
+
+    \medskip
+
+    Hence the MIT graduate's salary package is better than the Harvard graduate's salary 
+    package when $n \geq 16$.
+\end{proof}
+
+\end{document}

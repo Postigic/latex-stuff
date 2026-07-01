@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Given that $f(x) = O(g(x))$, prove that $f(x)^2 = O(g(x)^2)$.
+\end{claim}
+
+\begin{proof}
+    By definition of Big-O, there exist constants $C > 0$ and $x_0$ such that
+    \[
+    |f(x)| \leq C|g(x)|
+    \]
+    for all $x \geq x_0$. Since both sides are nonnegative, we can square both 
+    sides to yield
+    \[
+    \begin{aligned}
+    |f(x)|^2 &\leq (C|g(x)|)^2 \\
+    |f(x)|^2 &\leq C^2|g(x)|^2 \\
+    |f(x)^2| &\leq C^2|g(x)^2|
+    \end{aligned}
+    \]
+    Let $K = C^2$. Then
+    \[
+    |f(x)^2| \leq K|g(x)^2|
+    \]
+    for all $x \geq x_0$. Hence, by the definition of Big-O,
+    \[
+    f(x)^2 = O(g(x)^2).
+    \]
+
+    \medskip
+
+    Hence $f(x)^2 = O(g(x)^2)$.
+\end{proof}
+
+\begin{claim}
+    Let $f(x) \coloneq 2x$ and $g(x) \coloneq x$. Prove that $2^{g(x)} = 
+    o(2^{f(x)})$, so $2^{f(x)} \neq O(2^{g(x)})$.
+\end{claim}
+
+\begin{proof}
+    We first show that $2^{g(x)} = o(2^{f(x)})$. By definition of little-o,
+    \[
+    2^{g(x)} = o(2^{f(x)}) \iff \lim_{x \to \infty}\frac{2^{g(x)}}{2^{f(x)}} = 0
+    \]
+    Substituting $g(x) = x$ and $f(x) = 2x$ gives
+    \[
+    \begin{aligned}
+    \lim_{x \to \infty}\frac{2^x}{2^{2x}} &= \lim_{x \to \infty}2^{x - 2x} \\
+    &= \lim_{x \to \infty}2^{-x} \\
+    &= 0
+    \end{aligned}
+    \]
+    Hence $2^{g(x)} = o(2^{f(x)})$.
+
+    \medskip
+
+    It remains to show that $2^{f(x)} \neq O(2^{g(x)})$. Suppose for contradiction 
+    that $2^{f(x)} = O(2^{g(x)})$. Then by definition of Big-O, there exist 
+    constants $C > 0$ and $x_0$ such that
+    \[
+    |2^{f(x)}| \leq C|2^{g(x)}|
+    \]
+    for all $x \geq x_0$. Substituting $f(x) = 2x$ and $g(x) = x$ gives
+    \[
+    \begin{aligned}
+    |2^{2x}| &\leq C|2^x| \\
+    2^{2x} &\leq C2^x \\
+    2^x &\leq C
+    \end{aligned}
+    \]
+    Since $2^x \to \infty$, for any constant $C > 0$ there exists $x \geq x_0$
+    such that $2^x > C$, contradicting $2^x \leq C$. Therefore $2^{f(x)} \neq 
+    O(2^{g(x)})$.
+
+    \medskip
+
+    Hence $2^{g(x)} = o(2^{f(x)})$ and $2^{f(x)} \neq O(2^{g(x)})$.
+\end{proof}
+
+\end{document}
