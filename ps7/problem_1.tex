@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    There are $20$ books arranged in a row on a shelf. There exists a bijection between choosing
+    $6$ books so that no two adjacent books are selected and $15$-bit sequences with exactly $6$ 
+    ones.
+\end{claim}
+
+\begin{proof}
+    Let
+    \[
+    a_1 < a_2 < \dots < a_6
+    \]
+    be the positions of the $6$ chosen books where $a_{i+1} \ge a_i + 2$.
+
+    \medskip
+
+    Define
+    \[
+    b_i = a_i - (i - 1) \qquad i = 1, 2, \dots, 6
+    \]
+    This amounts to deleting one unselected book from each of the five gaps between consecutive 
+    selected books, therefore shifting the $i$th selected book left by $i - 1$ positions. Since
+    \[
+    b_{i+1} - b_i = (a_{i+1} - a_i) - 1 \ge 1
+    \]
+    we have
+    \[
+    1 \le b_1 < b_2 < \dots < b_6 \le 20 - 5 = 15
+    \]
+    Thus $(b_1, \dots, b_6)$ determines a unique 15-bit sequence with ones in positions $b_1, \dots, 
+    b_6$.
+
+    \medskip
+
+    Conversely, if $b_1 < b_2 < \dots < b_6$ are the positions of the ones in a 15-bit sequence, 
+    define
+    \[
+    a_i = b_i + (i - 1)
+    \]
+    Then
+    \[
+    a_{i+1} - a_i = (b_{i+1} - b_i) + 1 \ge 2
+    \]
+    so the corresponding books are nonadjacent. Since the two constructions are inverses of each 
+    other, they define a bijection.
+
+    \medskip
+
+    Hence there exists a bijection between choosing $6$ books so that no two adjacent books are 
+    selected and $15$-bit sequences with exactly $6$ ones.
+\end{proof}
+
+\begin{claim}
+    There are $5005$ ways to select $6$ books such that no two adjacent books 
+    are selected. 
+\end{claim}
+
+\begin{proof}
+    By Claim 1, there is a bijection between selections of $6$ books with no two adjacent and 
+    $15$-bit sequences with exactly $6$ ones. Therefore it suffices to count the latter. Since 
+    such a sequence is uniquely determined by the positions of its ones, the number of those 
+    sequences is
+    \[
+    \binom{15}{6} = 5005
+    \]
+
+    \medskip
+
+    Hence there are $5005$ ways to select $6$ books such that no two adjacent books are selected.
+\end{proof}
+
+\end{document}
