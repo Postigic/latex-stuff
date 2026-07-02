@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    There are $15120$ ways to arrange BANANARAMA.
+\end{claim}
+
+\begin{proof}
+    The word BANANARAMA consists of $10$ letters, with $5$ A's, $2$ N's, and one each of B, R, and M.
+    Since identical letters are indistinguishable, the number of distinct arrangements is
+    \[
+    \frac{10!}{2! \cdot 5!} = 15120
+    \]
+
+    \medskip
+
+    Hence there are $15120$ ways to arrange BANANARAMA.
+\end{proof}
+
+\begin{claim}
+    There are $\frac{72!}{12! \cdot 24! \cdot 36!}$ different paths from point $(0, 0, 0)$ to 
+    $(12, 24, 36)$, assuming every step affects only one coordinate.
+\end{claim}
+
+\begin{proof}
+    The entire path consists of $72$ steps, with $12$ steps in the $x$ direction, $24$ steps in the $y$ 
+    direction, and $36$ steps in the $z$ direction. Since steps in the same coordinate are 
+    indistinguishable, the number of distinct paths is
+    \[
+    \frac{72!}{12! \cdot 24! \cdot 36!}
+    \]
+
+    \medskip
+
+    Hence there are $\frac{72!}{12! \cdot 24! \cdot 36!}$ different paths from point $(0, 0, 0)$ to 
+    $(12, 24, 36)$, assuming every step affects only one coordinate.
+\end{proof}
+
+\begin{claim}
+    There are $\frac{(2n)!}{2^n \cdot n!}$ different ways to pair up $2n$ students.
+\end{claim}
+
+\begin{proof}
+    There are $(2n)!$ linear orderings of $2n$ students. Reading each ordering as consecutive pairs 
+    produces a pairing. However, this procedure overcounts each pairing. Firstly, the two students 
+    within each pair can be interchanged, giving a factor of $2^n$. Secondly, the $n$ pairs 
+    themselves can be permuted arbitrarily, giving an additional factor of $n!$. Hence each pairing 
+    is overcounted by $2^n \cdot n!$, so the number of distinct pairings is
+    \[
+    \frac{(2n)!}{2^n \cdot n!}
+    \]
+
+    \medskip
+
+    Hence there are $\frac{(2n)!}{2^n \cdot n!}$ different ways to pair up $2n$ students.
+\end{proof}
+
+\begin{claim}
+    
+\end{claim}
+
+\begin{proof}
+    
+\end{proof}
+
+\end{document}
