@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Among any $n^2 + 1$ points within an $n \times n$ square, there must exist two points 
+    whose distance is at most $\sqrt{2}$.
+\end{claim}
+
+\begin{proof}
+    Partition the $n \times n$ square into $n^2$ unit squares. Since there are $n^2 + 1$ 
+    points and only $n^2$ unit squares, the pigeonhole principle implies that at least two 
+    of the points lie in the same unit square.
+
+    \medskip
+
+    The greatest possible distance between two points in a $1 \times 1$ square is
+    the length of its diagonal, which is
+    \[
+        \sqrt{1^2+1^2}=\sqrt{2}.
+    \]
+
+    \medskip
+
+    Hence among any $n^2 + 1$ points within an $n \times n$ square, there must exist two 
+    points whose distance is at most $\sqrt{2}$.
+\end{proof}
+
+\end{document}
