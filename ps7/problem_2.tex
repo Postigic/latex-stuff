@@ -113,7 +113,7 @@
     \medskip
 
     Order the bits according to the difference in the indices of their endpoints. First encode the $n$ 
-    self-loops, then, for each $k = 1, 2, \dots, n - 1$, encode the $n - k$ edges joining $v_i$ and 
+    self-loops, then, for each $k \in \{1, 2, \dots, n - 1\}$, encode the $n - k$ edges joining $v_i$ and 
     $v_{i+k}$ for $1 \le i \le n - k$. Hence there are
     \[
     n + (n - 1) + (n - 2) + \dots + 1 = \frac{n(n+1)}{2}
@@ -136,19 +136,73 @@
 \end{proof}
 
 \begin{claim}
-    
+    Assuming the ball only travels from left to right, there are $576$ distinct ways for it to bounce on 
+    at most $3$ of $15$ sidewalk squares.
 \end{claim}
 
 \begin{proof}
-    
+    Since the ball only travels from left to right, a bounce pattern is uniquely determined by the set of 
+    sidewalk squares in which the ball bounces on. Conversely, every choice of $k$ distinct sidewalk squares 
+    determines exactly one such bounce pattern. This correspondence is one-to-one, hence the number of 
+    distinct bounce patterns with exactly $k$ bounces is
+    \[
+    \binom{15}{k}
+    \]
+    Summing over all admissable values of $k$ gives
+    \[
+    \begin{aligned}
+    \sum_{k=0}^{3}\binom{15}{k} &= \binom{15}{0} + \binom{15}{1} + \binom{15}{2} + \binom{15}{3} \\ 
+    &= 576
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence assuming the ball only travels from left to right, there are $576$ distinct ways for it to bounce 
+    on at most $3$ of $15$ sidewalk squares.
 \end{proof}
 
 \begin{claim}
-    
+    There are $220$ work days avoided out of $300$ days if one skips days that are even-numbered, 
+    multiples of $3$, and multiples of $5$.
 \end{claim}
 
 \begin{proof}
-    
+    Let $A$ be the set of days that are even-numbered, $B$ be the set of days that are multiples of $3$, 
+    and $C$ be the set of days that are multiples of $5$. Then
+    \[
+    \begin{aligned}
+    |A| &= \left\lfloor \frac{300}{2} \right\rfloor = 150 \\
+    |B| &= \left\lfloor \frac{300}{3} \right\rfloor = 100 \\
+    |C| &= \left\lfloor \frac{300}{5} \right\rfloor = 60
+    \end{aligned}
+    \]
+
+    \medskip
+
+    However, these three sets are not disjoint, since, for example, $6$ is in both $A$ and $B$. Hence the 
+    total number of avoided work days is given by the inclusion-exclusion principle,
+    \[
+    |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
+    \]
+    We compute the intersections as follows:
+    \[
+    \begin{aligned}
+    |A \cap B| &= \left\lfloor \frac{300}{6} \right\rfloor = 50 \\
+    |A \cap C| &= \left\lfloor \frac{300}{10} \right\rfloor = 30 \\
+    |B \cap C| &= \left\lfloor \frac{300}{15} \right\rfloor = 20 \\
+    |A \cap B \cap C| &= \left\lfloor \frac{300}{30} \right\rfloor = 10
+    \end{aligned}
+    \]
+    Hence the total number of work days avoided is
+    \[
+    |A \cup B \cup C| = 150 + 100 + 60 - 50 - 30 - 20 + 10 = 220
+    \]
+
+    \medskip
+
+    Hence there are $220$ avoided work days out of $300$ days if one skips days that are even-numbered, 
+    multiples of $3$, and multiples of $5$.
 \end{proof}
 
 \end{document}
