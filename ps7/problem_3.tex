@@ -8,27 +8,83 @@
 \begin{document}
 
 \begin{claim}
-    Among any $n^2 + 1$ points within an $n \times n$ square, there must exist two points 
-    whose distance is at most $\sqrt{2}$.
+    Among any $n^2 + 1$ points within an $n \times n$ square, there must exist two points whose distance 
+    is at most $\sqrt{2}$.
 \end{claim}
 
 \begin{proof}
-    Partition the $n \times n$ square into $n^2$ unit squares. Since there are $n^2 + 1$ 
-    points and only $n^2$ unit squares, the pigeonhole principle implies that at least two 
-    of the points lie in the same unit square.
+    Partition the $n \times n$ square into $n^2$ unit squares. Since there are $n^2 + 1$ points and only 
+    $n^2$ unit squares, the pigeonhole principle implies that at least two of the points lie in the same 
+    unit square.
 
     \medskip
 
-    The greatest possible distance between two points in a $1 \times 1$ square is
-    the length of its diagonal, which is
+    The greatest possible distance between two points in a $1 \times 1$ square is the length of its 
+    diagonal, which is
     \[
-        \sqrt{1^2+1^2}=\sqrt{2}.
+    \sqrt{1^2+1^2}=\sqrt{2}.
     \]
 
     \medskip
 
-    Hence among any $n^2 + 1$ points within an $n \times n$ square, there must exist two 
-    points whose distance is at most $\sqrt{2}$.
+    Hence among any $n^2 + 1$ points within an $n \times n$ square, there must exist two points whose 
+    distance is at most $\sqrt{2}$.
+\end{proof}
+
+\begin{claim}
+    Jellybeans of $6$ flavours are distributed among $5$ jars, with $11$ jellybeans of each flavour. 
+    Then some jar contains at least three jellybeans of two distinct flavours.
+\end{claim}
+
+\begin{proof}
+    Suppose for contradiction that no jar contains two distinct flavours each appearing at least three
+    times. Then every jar contains at most one flavour appearing at least three times. Assign such a
+    flavour to each jar whenever one exists. Since at most five flavours can be assigned in this way,
+    there is a flavour that is assigned to no jar. This flavour therefore appears fewer than three times 
+    in every jar, so it appears at most $2 \cdot 5 = 10$ times in total, contradicting the fact that each 
+    flavour appears $11$ times.
+
+    \medskip
+
+    Hence some jar must contain at least three jellybeans of two distinct flavours.
+\end{proof}
+
+\begin{claim}
+    Among every set of $30$ integers, there exist two whose difference or sum is a multiple of $51$.
+\end{claim}
+
+\begin{proof}
+    Let $a_1, a_2, \dots a_{30}$ denote the $30$ integers and $r_i$ denote the residue of 
+    $a_i \pmod{51}$, where $0 \le r_i \le 50$. Partition the residue classes modulo $51$ into the 
+    following $26$ sets:
+    \[
+    \{0\}, \{1, 50\}, \{2, 49\}, \dots, \{25, 26\}
+    \]
+    Since there are $30$ residues but only $26$ sets, the pigeonhole principle guarantees that two 
+    residues, say $r_x$ and $r_y$, belong to the same set.
+
+    \medskip
+
+    If $r_x = r_y$, then
+    \[
+    a_x \equiv a_y \pmod{51}
+    \]
+    so
+    \[
+    51 \mid (a_x - a_y)
+    \]
+    Otherwise, $r_x + r_y = 51$, so
+    \[
+    a_x + a_y \equiv r_x + r_y \equiv 51 \equiv 0 \pmod{51}
+    \]
+    hence
+    \[
+    51 \mid (a_x + a_y)
+    \]
+
+    \medskip
+
+    Hence among every set of $30$ integers, there exist two whose difference or sum is a multiple of $51$.
 \end{proof}
 
 \end{document}
