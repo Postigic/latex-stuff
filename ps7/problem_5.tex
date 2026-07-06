@@ -144,7 +144,37 @@ set of non-derangements is
 \end{claim}
 
 \begin{proof}
-    
+    From Claim 4, the expression for the number of non-derangements can be rewritten as follows:
+    \[
+    \begin{aligned}
+    \sum_{k=1}^{n}(-1)^{k+1}\left(\frac{n!}{k!}\right) &= \sum_{k=1}^{n}(-1)^{k+1}(n!)\left(\frac{1}{k!}\right) \\
+    &= n!\sum_{k=1}^{n}(-1)^{k+1}\left(\frac{1}{k!}\right) \\
+    &= n!\left(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - \dots \pm \frac{1}{n!}\right)
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Then the number of derangements is the complement of the number of non-derangements, which is computed as follows:
+    \[
+    \begin{aligned}
+    n! - n!\left(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - \dots \pm \frac{1}{n!}\right) &= n! \cdot 1 - 
+    n!\left(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - \dots \pm \frac{1}{n!}\right) \\
+    &= n!\left(1 - \left(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - \dots \pm \frac{1}{n!}\right)\right) \\
+    &= n!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}\right)
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the number of non-derangements is
+    \[
+    n!\left(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - \dots \pm \frac{1}{n!}\right)
+    \]
+    and the number of derangements is
+    \[
+    n!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}\right)
+    \]
 \end{proof}
 
 \begin{claim}
