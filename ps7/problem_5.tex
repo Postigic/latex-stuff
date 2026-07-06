@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{definition}{Definition}
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{definition}
+    A derangement is a permutation $(x_1, x_2, \dots, x_n)$ of $\{1, 2, \dots, n\}$ such that $x_i \neq i$ for all $i$.
+\end{definition}
+
+Let $S_i$ be the set of all permutations $(x_1, x_2, \dots, x_n)$ that are not derangements because $x_i = i$. Then the 
+set of non-derangements is
+\[
+\bigcup_{i=1}^n S_i
+\]
+
+\begin{claim}
+    $|S_i|$ is $(n - 1)!$.
+\end{claim}
+
+\begin{proof}
+    Since every permutation in $S_i$ satisfies $x_i = i$, it leaves the remaining $n - 1$ positions to be filled by the 
+    remaining $n - 1$ elements of $\{1, 2, \dots, n\} \setminus \{i\}$, in any order. There are $(n - 1)!$ ways to 
+    arrange these, so
+    \[
+    |S_i| = (n - 1)!
+    \]
+
+    \medskip
+
+    Hence $|S_i|$ is $(n - 1)!$.
+\end{proof}
+
+\begin{claim}
+    $|S_i \cap S_j|$ where $i \neq j$ is $(n - 2)!$.
+\end{claim}
+
+\begin{proof}
+    Since every permutation in $S_i \cap S_j$ satisfies $x_i = i$ and $x_j = j$, it leaves the remaining $n - 2$ 
+    positions to be filled by the remaining $n - 2$ elements of $\{1, 2, \dots, n\} \setminus \{i, j\}$, in any order. 
+    There are $(n - 2)!$ ways to arrange these, so
+    \[
+    |S_i \cap S_j| = (n - 2)!
+    \]
+
+    \medskip
+
+    Hence $|S_i \cap S_j|$ where $i \neq j$ is $(n - 2)!$.
+\end{proof}
+
+\begin{claim}
+    $|S_{i_1} \cap S_{i_2} \cap \dots \cap S_{i_k}|$ where $i_1, i_2, \dots, i_k$ are distinct is $(n - k)!$.
+\end{claim}
+
+\begin{proof}
+    Since every permutation in $S_{i_1} \cap S_{i_2} \cap \dots \cap S_{i_k}$ satisfies $x_{i_1} = i_1$, $x_{i_2} = i_2$, 
+    \dots, $x_{i_k} = i_k$, it leaves the remaining $n - k$ positions to be filled by the remaining $n - k$ elements of 
+    $\{1, 2, \dots, n\} \setminus \{i_1, i_2, \dots, i_k\}$, in any order. There are $(n - k)!$ ways to arrange these, so 
+    \[
+    |S_{i_1} \cap S_{i_2} \cap \dots \cap S_{i_k}| = (n - k)!
+    \]
+
+    \medskip
+
+    Hence $|S_{i_1} \cap S_{i_2} \cap \dots \cap S_{i_k}|$ where $i_1, i_2, \dots, i_k$ are distinct is $(n - k)!$.
+\end{proof}
+
+\begin{claim}
+    The number of non-derangements of $\{1, 2, \dots, n\}$ is
+    \[
+    \sum_{k=1}^{n}(-1)^{k+1}\left(\frac{n!}{k!}\right)
+    \]
+\end{claim}
+
+\begin{proof}
+    By the inclusion-exclusion principle,
+    \[
+    \left|\bigcup_{i=1}^n S_i\right| = \sum_{k=1}^n (-1)^{k+1}\sum_{1 \le i_1 < \dots < i_k \le n}
+    |S_{i_1} \cap \dots \cap S_{i_k}|
+    \]
+    By the previous claim,
+    \[
+    |S_{i_1}\cap \dots \cap S_{i_k}| = (n - k)!
+    \]
+    where $i_1, \dots, i_k$ are distinct. Since there are $\binom{n}{k}$ choices of such indices,
+    \[
+    \left|\bigcup_{i=1}^n S_i\right| = \sum_{k=1}^n (-1)^{k+1}\binom{n}{k}(n - k)!
+    \]
+    Finally,
+    \[
+    \begin{aligned}
+    \binom{n}{k}(n - k)! &= \frac{n!}{k!(n - k)!}(n - k)! \\
+    &= \frac{n!}{k!}
+    \end{aligned}
+    \]
+    so
+    \[
+    \left|\bigcup_{i=1}^n S_i\right| = \sum_{k=1}^n (-1)^{k+1}\left(\frac{n!}{k!}\right)
+    \]
+
+    \medskip
+
+    Hence the number of non-derangements of $\{1, 2, \dots, n\}$ is
+    \[
+    \sum_{k=1}^{n}(-1)^{k+1}\left(\frac{n!}{k!}\right)
+    \]
+\end{proof}
+
+\begin{claim}
+    There are $\binom{n}{k}$ terms with the form $|S_{i_1} \cap S_{i_2} \cap \dots \cap S_{i_k}|$ in the 
+    inclusion-exclusion expansion leading to the expression
+    \[
+    \sum_{k=1}^{n}(-1)^{k+1}\left(\frac{n!}{k!}\right)
+    \]
+\end{claim}
+
+\begin{proof}
+    Each such term is uniquely determined by the choice of indices $i_1, \dots, i_k$ which are all distinct. This is 
+    equivalent to choosing a $k$-element subset of $\{1, 2, \dots, n\}$. There are $\binom{n}{k}$ such choices, thus 
+    the number of terms is $\binom{n}{k}$.
+
+    \medskip
+
+    Hence there are $\binom{n}{k}$ terms with the form $|S_{i_1} \cap S_{i_2} \cap \dots \cap S_{i_k}|$ in the 
+    inclusion-exclusion expansion leading to the expression
+    \[
+    \sum_{k=1}^{n}(-1)^{k+1}\left(\frac{n!}{k!}\right)
+    \]
+\end{proof}
+
+\begin{claim}
+    The number of non-derangements is
+    \[
+    n!\left(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - \dots \pm \frac{1}{n!}\right)
+    \]
+    thus the number of derangements is
+    \[
+    n!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}\right)
+    \]
+\end{claim}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{claim}
+    
+\end{claim}
+
+\begin{proof}
+    
+\end{proof}
+
+\end{document}
