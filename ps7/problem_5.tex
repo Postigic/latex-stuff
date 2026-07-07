@@ -178,11 +178,42 @@ set of non-derangements is
 \end{proof}
 
 \begin{claim}
-    
+    As $n$ goes to infinity, the fraction of permutations that are derangements approaches $\frac{1}{e}$.
 \end{claim}
 
 \begin{proof}
+    From Claim 6, the number of derangements can be written as
+    \[
+    n!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}\right)
+    \]
+    thus the fraction of permutations that are derangements can be written as
+    \[
+    \frac{n!\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}\right)}{n!}
+    = 1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}
+    \]
+
+    \medskip
+
+    Using the Taylor series for $e^x$,
+    \[
+    e^x = \sum_{k=0}^{\infty} \frac{x^k}{k!}
+    \]
+    we can substitute $x = -1$ to obtain
+    \[
+    e^{-1} = \sum_{k=0}^{\infty} \frac{(-1)^k}{k!} = 1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots
+    \]
     
+    \medskip
+    
+    Since
+    \[
+    1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \dots \pm \frac{1}{n!}
+    \]
+    is the $n$th partial sum of this series, it approaches $e^{-1} = \frac{1}{e}$ as $n$ goes to infinity.
+
+    \medskip
+
+    Hence the fraction of permutations that are derangements approaches $\frac{1}{e}$ as $n$ goes to infinity.
 \end{proof}
 
 \end{document}
