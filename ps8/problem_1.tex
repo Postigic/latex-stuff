@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    The coefficient of $x^{10}$ in $\left(x + \frac{1}{x}\right)^{100}$ is $\binom{100}{45}$.
+\end{claim}
+
+\begin{proof}
+    Using the general term of the binomial expansion,
+    \[
+    \binom{n}{k}a^{n-k}b^k
+    \]
+    substitute $a = x$, $b = \frac{1}{x}$, and $n = 100$ to obtain
+    \[
+    \binom{100}{k}x^{100-k}\left(\frac{1}{x}\right)^k = \binom{100}{k}x^{100-2k}
+    \]
+
+    \medskip
+
+    The exponent of $x$ must be $10$, so we solve for $k$ as follows:
+    \[
+    \begin{aligned}
+    100 - 2k &= 10 \\
+    2k &= 90 \\
+    k &= 45
+    \end{aligned}
+    \]
+    Substituting $k = 45$ into the general term gives the coefficient
+    \[
+    \binom{100}{45}
+    \]
+
+    \medskip
+
+    Hence the coefficient of $x^{10}$ is $\binom{100}{45}$.
+\end{proof}
+
+\begin{claim}
+    The coefficient of $x^k$ in $\left(x^2 - \frac{1}{x}\right)^n$ is 
+    $\binom{n}{\frac{2n-k}{3}}(-1)^{\frac{2n-k}{3}}$.
+\end{claim}
+
+\begin{proof}
+    Using the general term of the binomial expansion,
+    \[
+    \binom{n}{r}a^{n-r}b^r
+    \]
+    substitute $a = x^2$ and $b = -\frac{1}{x}$ to obtain
+    \[
+    \begin{aligned}
+    \binom{n}{r}(x^2)^{n-r}\left(-\frac{1}{x}\right)^r &= \binom{n}{r}x^{2n-2r}(-x^{-1})^r \\
+    &= \binom{n}{r}x^{2n-2r}(-1)^{r}(x^{-1})^r \\
+    &= \binom{n}{r}(-1)^{r}x^{2n-3r}
+    \end{aligned}
+    \]
+
+    \medskip
+
+    The exponent of $x$ must be $k$, so we solve for $r$ as follows:
+    \[
+    \begin{aligned}
+    2n - 3r &= k \\
+    3r &= 2n - k \\
+    r &= \frac{2n - k}{3}
+    \end{aligned}
+    \]
+    Substituting $r = \frac{2n - k}{3}$ into the general term gives the coefficient
+    \[
+    \binom{n}{\frac{2n-k}{3}}(-1)^{\frac{2n-k}{3}}
+    \]
+
+    \medskip
+
+    Hence the coefficient of $x^k$ is $\binom{n}{\frac{2n-k}{3}}(-1)^{\frac{2n-k}{3}}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+Suppose a generalised World Series between the Sox and the Cardinals involved $2n + 1$ games. As 
+usual, the generalised Series will stop as soon as one team has won more than half the possible 
+games.
+
+\begin{claim}
+    If the Cards won exactly $r$ games and the Sox won the GSeries, then there are 
+    $\binom{n + r}{r}$ possible win-loss patterns for the Sox.
+\end{claim}
+
+\begin{proof}
+    By definition of the GSeries, the Sox must win $n + 1$ out of the $2n + 1$ games in order to 
+    win the series. Since the Cards win exactly $r$ games, the Sox have exactly $r$ losses. 
+    Hence, the series lasts for 
+    \[
+    n + r + 1
+    \]
+    games.
+    
+    \medskip
+    
+    The Sox must win the final game, since this is the game in which they obtain their $(n+1)$-st 
+    win and clinch the GSeries. Therefore, the first $n + r$ games contain exactly $r$ Sox losses 
+    and $n$ Sox wins.
+
+    \medskip
+
+    Thus, a win-loss pattern is uniquely determined by choosing the $r$ games among the first 
+    $n + r$ games in which the Sox lose. The number of possible choices is
+    \[
+    \binom{n + r}{r}
+    \]
+
+    \medskip
+
+    Hence the Sox have $\binom{n + r}{r}$ possible win-loss patterns.
+\end{proof}
+
+\begin{claim}
+    If the Cards won at most $r$ games and the Sox won the GSeries, then there are 
+    $\binom{?}{?}$ possible win-loss patterns for the Sox.
+\end{claim}
+
+\begin{proof}
+    
+\end{proof}
+
+\end{document}
