@@ -17,9 +17,8 @@ games.
 \end{claim}
 
 \begin{proof}
-    By definition of the GSeries, the Sox must win $n + 1$ out of the $2n + 1$ games in order to 
-    win the series. Since the Cards win exactly $r$ games, the Sox have exactly $r$ losses. 
-    Hence, the series lasts for 
+    By definition of the GSeries, the Sox must win $n + 1$ games to win the series. Since the Cards 
+    win exactly $r$ games, the Sox have exactly $r$ losses. Hence, the series lasts for 
     \[
     n + r + 1
     \]
@@ -46,11 +45,122 @@ games.
 
 \begin{claim}
     If the Cards won at most $r$ games and the Sox won the GSeries, then there are 
-    $\binom{?}{?}$ possible win-loss patterns for the Sox.
+    $\binom{n + r + 1}{r}$ possible win-loss patterns for the Sox.
 \end{claim}
 
 \begin{proof}
-    
+    By definition of the GSeries, the Sox must win $n + 1$ games to win the series. Since the Cards 
+    win exactly $r$ games, the Sox have exactly $r$ losses. Hence, the series lasts for 
+    \[
+    n + r + 1
+    \]
+    games.
+
+    \medskip
+
+    Represent each win-loss pattern by a binary sequence consisting of $n + r + 1$ bits, where a $1$ 
+    represents a Sox win and a $0$ represents a Cards win. If the Cards win fewer than $r$ games, 
+    append the remaining $0$s after the final $1$. Thus the sequence consists of exactly 
+    $n + 1$ $1$s and $r$ $0$s.
+
+    \medskip
+
+    Conversely, given any such binary sequence, the number of $0$s occurring before the final $1$
+    is exactly the number of games won by the Cards before the Sox clinch the GSeries. Any $0$s 
+    occurring after the final $1$ are padding bits and do not correspond to any games. Deleting 
+    all padding $0$s after the final $1$ recovers the original win-loss pattern. Hence this 
+    correspondence is one-to-one.
+
+    \medskip
+
+    Thus, the number of possible win-loss patterns is equal to the number of ways to choose the 
+    positions of the $r$ $0$s among the $n + r + 1$ bits, which is
+    \[
+    \binom{n + r + 1}{r}
+    \]
+
+    \medskip
+
+    Hence the Sox have $\binom{n + r + 1}{r}$ possible win-loss patterns.
+\end{proof}
+
+\begin{claim}
+    \[
+    \sum_{i=0}^{r}\binom{n + i}{i} = \binom{n + r + 1}{r}
+    \]
+\end{claim}
+
+\begin{proof}[Combinatorial Proof]
+    From Claim 2, we know that $\binom{n + r + 1}{r}$ is the number of possible win-loss patterns 
+    for the Sox given that the Cards won at most $r$ games.
+
+    \medskip
+
+    Now, let $i$ denote the number of games won by the Cards, where $0 \leq i \leq r$. By Claim 1, 
+    there are $\binom{n + i}{i}$ possible win-loss patterns for the Sox given that the Cards won 
+    $i$ games. Summing over all admissible values gives
+    \[
+    \sum_{i=0}^{r}\binom{n + i}{i}
+    \]
+
+    \medskip
+
+    Since both expressions count the number of possible win-loss patterns for the Sox given that 
+    the Cards won at most $r$ games, they must be equal.
+
+    \medskip
+
+    Hence
+    \[
+    \sum_{i=0}^{r}\binom{n + i}{i} = \binom{n + r + 1}{r}
+    \]
+\end{proof}
+
+\begin{proof}[Inductive Proof]
+    Fix $n \ge 0$. We proceed by induction on $r$.
+
+    \medskip
+
+    \textbf{Base case:} $r = 0$, so
+    \[
+    \begin{aligned}
+    \sum_{i=0}^{0}\binom{n + i}{i} &= \binom{n + 0}{0} \\
+    &= 1 \\
+    &= \binom{n + 1}{0}
+    \end{aligned}
+    \]
+    Thus the base case holds.
+
+    \medskip
+
+    \textbf{Inductive step:} Assume that for some $r \ge 0$, the identity
+    \[
+    \sum_{i=0}^{r}\binom{n + i}{i} = \binom{n + r + 1}{r}
+    \]
+    holds. We must show that
+    \[
+    \sum_{i=0}^{r+1}\binom{n + i}{i} = \binom{n + r + 2}{r + 1}
+    \]
+
+    \medskip
+
+    We have
+    \[
+    \begin{aligned}
+    \sum_{i=0}^{r+1}\binom{n + i}{i} &= \sum_{i=0}^{r}\binom{n + i}{i} + \binom{n + r + 1}{r + 1} \\
+    &= \binom{n + r + 1}{r} + \binom{n + r + 1}{r + 1} \qquad \text{(by the induction hypothesis)} \\
+    &= \binom{n + r + 2}{r + 1} \qquad \text{(by Pascal's identity).}
+    \end{aligned}
+    \]
+    Thus the inductive step holds.
+
+    \medskip
+
+    Hence, by induction, the identity holds for all $r \ge 0$. Since $n$ was arbitrary, it follows that
+    \[
+    \sum_{i=0}^{r}\binom{n + i}{i} = \binom{n + r + 1}{r}
+    \]
+    for all $n, r \ge 0$
 \end{proof}
 
 \end{document}
