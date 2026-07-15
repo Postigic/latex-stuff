@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+Suppose $n$ balls are thrown randomly into $n$ boxes, so each ball lands in each box with uniform probability. 
+Also, suppose the outcome of each throw is independent of all the other throws.
+
+\begin{claim}
+    Let $X_i$ be an indicator random variable whose value is $1$ if box $i$ is empty and $0$ otherwise. The 
+    closed form expression for the probability distribution of $X_i$ is 
+    \[
+    \Pr\{X_i = x\} =
+    \begin{cases}
+    \left(1 - \frac{1}{n}\right)^n, & x = 1, \\[6pt]
+    1 - \left(1 - \frac{1}{n}\right)^n, & x = 0.
+    \end{cases}
+    \]
+    and $X_1, X_2, \dots, X_n$ are dependent random variables.
+\end{claim}
+
+\begin{proof}
+    Since each ball lands in each box with uniform probability, the probability that a ball lands in box $i$ is
+    \[
+    \Pr\{\text{ball lands in box } i\} = \frac{1}{n}
+    \]
+    Taking the complement,
+    \[
+    \Pr\{\text{ball does not land in box } i\} = 1 - \frac{1}{n}
+    \]
+    Since the throws are independent, the probability that box $i$ is empty is 
+    \[
+    \Pr\{\text{box } i \text{ is empty}\} = \left(1 - \frac{1}{n}\right)^n
+    \]
+    Hence
+    \[
+    \Pr\{X_i = 1\} = \left(1 - \frac{1}{n}\right)^n
+    \]
+    and 
+    \[
+    \Pr\{X_i = 0\} = 1 - \left(1 - \frac{1}{n}\right)^n
+    \]
+
+    \medskip
+
+    It remains to verify whether the random variables $X_1, X_2, \dots, X_n$ are independent. If $X_1$ and $X_2$ 
+    were independent, then
+    \[
+    \Pr\{X_1 = 1, X_2 = 1\} = \Pr\{X_1 = 1\}\Pr\{X_2 = 1\}
+    \]
+    We now determine whether this equality holds. Using the prior result, we have
+    \[
+    \Pr\{X_1 = 1\}\Pr\{X_2 = 1\} = \left(\left(1 - \frac{1}{n}\right)^n\right)^2
+    \]
+    To find $\Pr\{X_1 = 1, X_2 = 1\}$, we first calculate the probability that a ball 
+    lands in either box $1$ or $2$.
+    \[
+    \Pr\{\text{ball lands in either box } 1 \text{ or } 2\} = \frac{1}{n} + \frac{1}{n} = \frac{2}{n}
+    \]
+    Taking the complement,
+    \[
+    \Pr\{\text{ball lands in neither box } 1 \text{ nor } 2\} = 1 - \frac{2}{n}
+    \]
+    Since the throws are independent, the probability that both boxes $1$ and $2$ are 
+    empty is
+    \[
+    \Pr\{\text{box } 1 \text{ and } 2 \text{ are empty}\} = \left(1 - \frac{2}{n}\right)^n
+    \]
+    Hence
+    \[
+    \Pr\{X_1 = 1, X_2 = 1\} = \left(1 - \frac{2}{n}\right)^n
+    \]
+    However,
+    \[
+    \left(1 - \frac{2}{n}\right)^n \neq \left(\left(1 - \frac{1}{n}\right)^n\right)^2
+    \]
+    in general. For example, when $n = 2$,
+    \[
+    \left(1 - \frac{2}{2}\right)^2 = 0 \quad \text{while} \quad 
+    \left(\left(1 - \frac{1}{2}\right)^2\right)^2 = \frac{1}{16}
+    \]
+    Hence the random variables $X_1, X_2, \dots, X_n$ are not independent.
+
+    \medskip
+
+    Hence the probability distribution of $X_i$ is
+    \[
+    \Pr\{X_i = x\} =
+    \begin{cases}
+    \left(1 - \frac{1}{n}\right)^n, & x = 1, \\[6pt]
+    1 - \left(1 - \frac{1}{n}\right)^n, & x = 0.
+    \end{cases}
+    \]
+    and $X_1, X_2, \dots, X_n$ are dependent random variables.
+\end{proof}
+
+\end{document}
