@@ -98,4 +98,58 @@ Also, suppose the outcome of each throw is independent of all the other throws.
     and $X_1, X_2, \dots, X_n$ are dependent random variables.
 \end{proof}
 
+\begin{claim}
+    The probability that at least $k$ balls fall in the first box is
+    \[
+    \Pr\{\text{at least } k \text{ balls fall in the first box}\} \leq \binom{n}{k}\left(\frac{1}{n}\right)^k
+    \]
+\end{claim}
+
+\begin{proof}
+    From $n$ balls, we can choose $k$ balls by
+    \[
+    \binom{n}{k}
+    \]
+    Since each ball lands in each box with uniform probability, the probability that a ball lands in the first 
+    box is
+    \[
+    \Pr\{\text{ball lands in the first box}\} = \frac{1}{n}
+    \]
+    Consider any fixed set of $k$ balls. By independence, the probability that at least $k$ balls fall in the 
+    first box is
+    \[
+    \Pr\{\text{those } k \text{ balls land in the first box}\} = \left(\frac{1}{n}\right)^k
+    \]
+    Thus the probability that $k$ balls fall in the first box is
+    \[
+    \Pr\{k \text{ balls land in the first box}\} = \binom{n}{k}\left(\frac{1}{n}\right)^k
+    \]
+
+    \medskip
+
+    It remains to justify why this gives an upper bound rather than an equality for the probability that at 
+    least $k$ balls fall in the first box. If more than $k$ balls fall in the first box, then a single outcome 
+    is counted for several different choices of $k$ balls. Hence, when summing over all $\binom{n}{k}$ choices, 
+    such outcomes are counted more than once. Therefore the above expression overestimates the desired 
+    probability, which gives the inequality.
+
+    \medskip
+
+    Hence the probability that at least $k$ balls fall in the first box is
+    \[
+    \Pr\{\text{at least } k \text{ balls fall in the first box}\} \leq \binom{n}{k}\left(\frac{1}{n}\right)^k
+    \]
+\end{proof}
+
+\begin{claim}
+    Let $R$ be the maximum of the numbers of balls that land in each of the boxes. Then 
+    \[
+    \Pr\{R \geq k\} \leq \frac{n}{k!}
+    \]
+\end{claim}
+
+\begin{proof}
+    
+\end{proof}
+
 \end{document}
