@@ -149,7 +149,73 @@ Also, suppose the outcome of each throw is independent of all the other throws.
 \end{claim}
 
 \begin{proof}
-    
+    Let $A_i$ be the event that at least $k$ balls fall into box $i$. Then
+    \[
+    \Pr\{R \geq k\} = \Pr\left\{\bigcup_{i=1}^{n}A_i\right\}
+    \]
+    By the union bound,
+    \[
+    \Pr\{R \geq k\} \leq \sum_{i=1}^{n}\Pr\{A_i\}
+    \]
+    Since each box is equally likely to receive balls,
+    \[
+    \sum_{i=1}^{n}\Pr\{A_i\} = n\Pr\{A_1\}
+    \]
+
+    \medskip
+
+    From the previous claim, 
+    \[
+    \Pr\{A_1\} \leq \binom{n}{k}\left(\frac{1}{n}\right)^k
+    \]
+    Expanding the expression, 
+    \[
+    \begin{aligned}
+    \binom{n}{k}\left(\frac{1}{n}\right)^k &= \frac{n(n - 1)\dots(n - k + 1)}{k!}\left(\frac{1}{n^k}\right) \\
+    &= \frac{1}{k!}\left(\frac{n(n - 1)\dots(n - k + 1)}{n^k}\right) \\
+    &= \frac{1}{k!} \cdot \prod_{j=0}^{k-1}\frac{n-j}{n}
+    \end{aligned}
+    \]
+    Since each factor in the product is at most $1$,
+    \[
+    \Pr\{A_1\} \leq \frac{1}{k!}
+    \]
+    Therefore, 
+    \[
+    \Pr\{R \geq k\} \leq n\Pr\{A_1\} \leq \frac{n}{k!}
+    \]
+
+    \medskip
+
+    Hence 
+    \[
+    \Pr\{R \geq k\} \leq \frac{n}{k!}
+    \]
+\end{proof}
+
+\begin{claim}
+    For all $\epsilon > 0$,
+    \[
+    \lim_{n \to \infty}\Pr\{R \geq n^\epsilon\} = 0
+    \]
+\end{claim}
+
+\begin{proof}
+    Substituting $k=n^\epsilon$ into the previous claim gives
+    \[
+    \Pr\{R \geq n^\epsilon\} \leq \frac{n}{(n^\epsilon)!}
+    \]
+    Since factorial growth dominates polynomial growth,
+    \[
+    \lim_{n \to \infty}\frac{n}{(n^\epsilon)!} = 0
+    \]
+
+    \medskip
+
+    Hence,
+    \[
+    \lim_{n \to \infty}\Pr\{R \geq n^\epsilon\} = 0
+    \]
 \end{proof}
 
 \end{document}
