@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    A busy student must complete $3$ problem sets before doing laundry. Each problem set 
+    requires $1$ day with probability $\frac{2}{3}$ and $2$ days with probability 
+    $\frac{1}{3}$. Let $B$ be the number of days a busy student delays laundry. Then 
+    $\mathrm{E}[B] = 4$.
+\end{claim}
+
+\begin{proof}
+    Let $X_1$, $X_2$, and $X_3$ denote the number of days required to complete the first, 
+    second, and third problem sets respectively. Then 
+    \[
+    B = X_1 + X_2 + X_3
+    \]
+    By linearity of expectation,
+    \[
+    \mathrm{E}[B] = \mathrm{E}[X_1 + X_2 + X_3] 
+    = \mathrm{E}[X_1] + \mathrm{E}[X_2] + \mathrm{E}[X_3]
+    \]
+    Since $X_1$, $X_2$, and $X_3$ have the same probability distribution, 
+    \[
+    \mathrm{E}[X_1] = \mathrm{E}[X_2] = \mathrm{E}[X_3]
+    \]
+    Hence it suffices to compute 
+    $\mathrm{E}[X_1]$. By the definition of expectation,
+    \[
+    \mathrm{E}[X_1] = 1 \cdot \Pr\{X_1 = 1\} + 2 \cdot \Pr\{X_1 = 2\}
+    \]
+    Plugging $\Pr\{X_1 = 1\} = \frac{2}{3}$, $\Pr\{X_1 = 2\} = \frac{1}{3}$ into the above 
+    equation gives
+    \[
+    \mathrm{E}[X_1] = 1 \cdot \frac{2}{3} + 2 \cdot \frac{1}{3} = \frac{4}{3}
+    \]
+    Therefore,
+    \[
+    \mathrm{E}[B] = \mathrm{E}[X_1 + X_2 + X_3] 
+    = \mathrm{E}[X_1] + \mathrm{E}[X_2] + \mathrm{E}[X_3] 
+    = \frac{4}{3} + \frac{4}{3} + \frac{4}{3} = 4
+    \]
+
+    \medskip
+
+    Hence 
+    \[
+    \mathrm{E}[B] = 4
+    \]
+\end{proof}
+
+\begin{claim}
+    A relaxed student rolls a fair, $6$-sided die in the morning. If he rolls a $1$, then he 
+    does his laundry immediately (with zero days of delay). Otherwise, he delays for one 
+    day and repeats the experiment the following morning. Let $R$ be the number of days a 
+    relaxed student delays laundry. Then $\mathrm{E}[R] = 5$.
+\end{claim}
+
+\begin{proof}
+    Let $D$ denote the outcome of this morning's die roll. We condition on the result of this 
+    morning's roll. If $D = 1$, the student does not delay his laundry, contributing $0$ days. 
+    If $D \neq 1$, the student delays for one day and the remaining process has the same 
+    distribution as the original process, since the next morning's roll is independent of all 
+    previous rolls. Thus, the expected delay from that point onward is again $\mathrm{E}[R]$. 
+    Therefore, by conditioning on the first roll,
+    \[
+    \mathrm{E}[R] = 0 \cdot \Pr\{D = 1\} + (1 + \mathrm{E}[R]) \cdot \Pr\{D \neq 1\}
+    \]
+    Since the die is fair, there is a probability of $\frac{1}{6}$ of rolling a $1$ on the 
+    first try, and a probability of $\frac{5}{6}$ otherwise. Plugging into the above equation 
+    gives
+    \[
+    \mathrm{E}[R] = 0 \cdot \frac{1}{6} + (1 + \mathrm{E}[R]) \cdot \frac{5}{6}
+    \]
+    Solving for $\mathrm{E}[R]$ gives
+    \[
+    \begin{aligned}
+    \mathrm{E}[R] &= 0 \cdot \frac{1}{6} + (1 + \mathrm{E}[R]) \cdot \frac{5}{6} \\
+    \mathrm{E}[R] &= \frac{5}{6} + \frac{5}{6}\mathrm{E}[R] \\
+    \frac{1}{6}\mathrm{E}[R] &= \frac{5}{6} \\
+    \mathrm{E}[R] &= 5
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence
+    \[
+    \mathrm{E}[R] = 5
+    \]
+\end{proof}
+
+\begin{claim}
+    Before doing laundry, an unlucky student must recover from illness for a number of days 
+    equal to the product of the numbers rolled on two fair, $6$-sided dice. Let $U$ be the
+    expected number of days an unlucky student delays laundry. Then $\mathrm{E}[U] = \frac{49}{4}$.
+\end{claim}
+
+\begin{proof}
+    Let $D_1$ and $D_2$ be the outcomes of the first and second die rolls respectively. 
+    Then
+    \[
+    U = D_1D_2
+    \]
+    By the definition of expectation,
+    \[
+    \mathrm{E}[U] = \mathrm{E}[D_1D_2]
+    \]
+    Because $D_1$ and $D_2$ are independent,
+    \[
+    \mathrm{E}[D_1D_2] = \mathrm{E}[D_1]\mathrm{E}[D_2]
+    \]
+    Since $D_1$ and $D_2$ have the same probability distribution,
+    \[
+    \mathrm{E}[D_1] = \mathrm{E}[D_2]
+    \]
+    Hence it suffices to compute $\mathrm{E}[D_1]$. By the definition of expectation, 
+    \[
+    \mathrm{E}[D_1] = \sum_{x=1}^{6} x \cdot \Pr\{D_1 = x\}
+    \]
+    Since the die is fair,
+    \[
+    \Pr\{D_1 = x\} = \frac{1}{6}
+    \]
+    Thus
+    \[
+    \mathrm{E}[D_1] = \sum_{x=1}^{6} x \cdot \frac{1}{6} = \frac{7}{2}
+    \]
+    Therefore
+    \[
+    \mathrm{E}[U] = \mathrm{E}[D_1D_2] = \mathrm{E}[D_1]\mathrm{E}[D_2] 
+    = \frac{7}{2} \cdot \frac{7}{2} = \frac{49}{4}
+    \]
+
+    \medskip
+
+    Hence
+    \[
+    \mathrm{E}[U] = \frac{49}{4}
+    \]
+\end{proof}
+
+\begin{claim}
+    A student is busy with probability $\frac{1}{2}$, relaxed with probability 
+    $\frac{1}{3}$, and unlucky with probability $\frac{1}{6}$. Let $D$ be the number 
+    of days the student delays laundry. Then $\mathrm{E}[D] = \frac{137}{24}$.
+\end{claim}
+
+\begin{proof}
+    Let $T$ denote the student's type, where $T = B$, $T = R$, and $T = U$ denote 
+    that the student is busy, relaxed, and unlucky respectively. Then by the law of 
+    total expectation, 
+    \[
+    \begin{aligned}
+    \mathrm{E}[D] &= \mathrm{E}[D \mid T = B]\Pr\{T = B\} \\
+    &\quad + \mathrm{E}[D \mid T = R]\Pr\{T = R\} \\
+    &\quad + \mathrm{E}[D \mid T = U]\Pr\{T = U\}
+    \end{aligned}
+    \]
+    By the previous claims,
+    \[
+    \begin{aligned}
+    \mathrm{E}[D \mid T = B] &= 4 \\
+    \mathrm{E}[D \mid T = R] &= 5 \\
+    \mathrm{E}[D \mid T = U] &= \frac{49}{4}
+    \end{aligned}
+    \]
+    and $\Pr\{T = B\} = \frac{1}{2}$, $\Pr\{T = R\} = \frac{1}{3}$, and 
+    $\Pr\{T = U\} = \frac{1}{6}$. Substituting these values into the above equation 
+    gives
+    \[
+    \mathrm{E}[D] = 4 \cdot \frac{1}{2} + 5 \cdot \frac{1}{3} + 
+    \frac{49}{4} \cdot \frac{1}{6} = \frac{137}{24}
+    \]
+
+    \medskip
+
+    Hence
+    \[
+    \mathrm{E}[D] = \frac{137}{24}
+    \]
+\end{proof}
+
+\end{document}
