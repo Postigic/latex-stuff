@@ -49,10 +49,11 @@ games.
 \end{claim}
 
 \begin{proof}
-    By definition of the GSeries, the Sox must win $n + 1$ games to win the series. Since the Cards 
-    win exactly $r$ games, the Sox have exactly $r$ losses. Hence, the series lasts for 
+    By definition of the GSeries, the Sox must win $n + 1$ games to win the series. Let the Cards win
+    $i$ games, where $0 \leq i \leq r$. Then the Sox have exactly $i$ losses. Hence, the series lasts 
+    for
     \[
-    n + r + 1
+    n + i + 1
     \]
     games.
 
@@ -60,7 +61,7 @@ games.
 
     Represent each win-loss pattern by a binary sequence consisting of $n + r + 1$ bits, where a $1$ 
     represents a Sox win and a $0$ represents a Cards win. If the Cards win fewer than $r$ games, 
-    append the remaining $0$s after the final $1$. Thus the sequence consists of exactly 
+    append the remaining $r - i$ $0$s after the final $1$. Thus the sequence consists of exactly 
     $n + 1$ $1$s and $r$ $0$s.
 
     \medskip
