@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+We are given a set of $n$ distinct positive integers. We then determine the maximum of these numbers by the 
+following procedure: 
+
+\medskip
+
+First, randomly arrange the numbers in a sequence. Then, let the ``current maximum" 
+initially be the first number in the sequence and the ``current element" be the second element of the 
+sequence. If the current element is greater than the current maximum, perform an ``update": that is, change 
+the current maximum to be the current element. Either way, change the current element to be the next element 
+of the sequence. Repeat this process until there is no next element.
+
+\begin{claim}
+    The expected number of updates is $\sim \ln n$.
+\end{claim}
+
+\begin{proof}
+    For each $i \in \{2, 3, \dots, n\}$, define the indicator random variable
+    \[
+    M_i =
+    \begin{cases}
+    1 & \text{if element } i \text{ is bigger than all the previous elements} \\
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+    Since $M_i$ is an indicator random variable,
+    \[
+    \mathrm{E}[M_i] = 1 \cdot \Pr\{M_i = 1\} + 0 \cdot \Pr\{M_i = 0\} = \Pr\{M_i = 1\}
+    \]
+    Let $M$ denote the number of updates. Then 
+    \[
+    M = \sum_{i=2}^{n}M_i
+    \]
+    By linearity of expectation, 
+    \[
+    \mathrm{E}[M] = \sum_{i=2}^{n}\mathrm{E}[M_i] = \sum_{i=2}^{n}\Pr\{M_i = 1\}
+    \]
+
+    \medskip
+
+    For a fixed $i$, the first $i$ elements are equally likely to appear in any order. Thus, each of the $i$ 
+    positions is equally likely to contain the local maximum element. Therefore, element $i$ is the local 
+    maximum with probability
+    \[
+    \Pr\{M_i = 1\} = \frac{1}{i}
+    \]
+    Hence, 
+    \[
+    \mathrm{E}[M] = \sum_{i=2}^{n}\frac{1}{i} = H_n - 1
+    \]
+    where
+    \[
+    H_n = \sum_{i=1}^{n}\frac{1}{i}
+    \]
+    is the $n$th harmonic number. Using the well-known asymptotic relation
+    \[
+    H_n = \ln n + \gamma + o(1)
+    \]
+    we obtain 
+    \[
+    \mathrm{E}[M] = H_n - 1 = \ln n + (\gamma - 1) + o(1)
+    \]
+
+    \medskip
+
+    Hence the expected number of updates is $\sim \ln n$.
+\end{proof}
+
+\end{document}

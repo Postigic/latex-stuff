@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+\newtheorem*{corollary}{Corollary}
+
+\begin{document}
+
+In a certain card game, each card has a point value.
+
+\begin{itemize}
+    \item Numbered cards in the range $2$ to $9$ are worth five points each.
+    \item The card numbered $10$ and the face cards (jack, queen, king) are worth ten points each.
+    \item Aces are worth fifteen points each.
+\end{itemize}
+
+\begin{claim}
+    Suppose that you thoroughly shuffle a $52$-card deck. The expected total point value of the three 
+    cards on the top of the deck after the shuffle is $\frac{285}{13}$.
+\end{claim}
+
+\begin{proof}
+    For each $i \in \{1, 2, 3\}$, define the random variable 
+    \[
+    X_i =
+    \begin{cases}
+        5 & \text{if card } i \text{ is worth five points} \\
+        10 & \text{if card } i \text{ is worth ten points} \\
+        15 & \text{if card } i \text{ is worth fifteen points}
+    \end{cases}
+    \]
+    Let $X$ denote the total point value of the first three cards. Then
+    \[
+    X = X_1 + X_2 + X_3
+    \]
+    By linearity of expectation,
+    \[
+    \mathrm{E}[X] = \mathrm{E}[X_1] + \mathrm{E}[X_2] + \mathrm{E}[X_3]
+    \]
+    Since the random variables $X_1$, $X_2$, and $X_3$ have the same probability distribution, 
+    \[
+    \mathrm{E}[X] = 3\mathrm{E}[X_1]
+    \]
+    so it remains only to compute $\mathrm{E}[X_1]$. By the definition of expectation, 
+    \[
+    \mathrm{E}[X_1] = 5 \cdot \Pr\{X_1 = 5\} + 10 \cdot \Pr\{X_1 = 10\} + 15 \cdot \Pr\{X_1 = 15\}
+    \]
+    The relevant probabilities are
+    \[
+    \begin{aligned}
+        \Pr\{X_1 = 5\} &= \frac{32}{52} = \frac{8}{13} \\[4pt]
+        \Pr\{X_1 = 10\} &= \frac{16}{52} = \frac{4}{13} \\[4pt]
+        \Pr\{X_1 = 15\} &= \frac{4}{52} = \frac{1}{13}
+    \end{aligned}
+    \]
+    Substituting the above values into the above equation gives 
+    \[
+    \mathrm{E}[X_1] = 5 \cdot \frac{8}{13} + 10 \cdot \frac{4}{13} + 15 \cdot \frac{1}{13} = \frac{95}{13}
+    \]
+    Thus 
+    \[
+    \mathrm{E}[X] = \frac{95}{13} + \frac{95}{13} + \frac{95}{13} = \frac{285}{13}
+    \]
+
+    \medskip
+
+    Hence the expected total point value of the first three cards is $\frac{285}{13}$ points.
+\end{proof}
+
+\begin{claim}
+    Suppose that you throw out all the red cards and shuffle the remaining $26$-card, all-black deck. 
+    The expected total point value of the top three cards is $\frac{285}{13}$.
+\end{claim}
+
+\begin{proof}
+    For each $i \in \{1, 2, 3\}$, define the random variable 
+    \[
+    X_i =
+    \begin{cases}
+        5 & \text{if card } i \text{ is worth five points} \\
+        10 & \text{if card } i \text{ is worth ten points} \\
+        15 & \text{if card } i \text{ is worth fifteen points}
+    \end{cases}
+    \]
+    Let $X$ denote the total point value of the first three cards. Then
+    \[
+    X = X_1 + X_2 + X_3
+    \]
+    By linearity of expectation,
+    \[
+    \mathrm{E}[X] = \mathrm{E}[X_1] + \mathrm{E}[X_2] + \mathrm{E}[X_3]
+    \]
+    Since the random variables $X_1$, $X_2$, and $X_3$ have the same probability distribution, 
+    \[
+    \mathrm{E}[X] = 3\mathrm{E}[X_1]
+    \]
+    so it remains only to compute $\mathrm{E}[X_1]$. By the definition of expectation, 
+    \[
+    \mathrm{E}[X_1] = 5 \cdot \Pr\{X_1 = 5\} + 10 \cdot \Pr\{X_1 = 10\} + 15 \cdot \Pr\{X_1 = 15\}
+    \]
+    The relevant probabilities are
+    \[
+    \begin{aligned}
+        \Pr\{X_1 = 5\} &= \frac{16}{26} = \frac{8}{13} \\[4pt]
+        \Pr\{X_1 = 10\} &= \frac{8}{26} = \frac{4}{13} \\[4pt]
+        \Pr\{X_1 = 15\} &= \frac{2}{26} = \frac{1}{13}
+    \end{aligned}
+    \]
+    Substituting the above values into the above equation gives 
+    \[
+    \mathrm{E}[X_1] = 5 \cdot \frac{8}{13} + 10 \cdot \frac{4}{13} + 15 \cdot \frac{1}{13} = \frac{95}{13}
+    \]
+    Thus 
+    \[
+    \mathrm{E}[X] = \frac{95}{13} + \frac{95}{13} + \frac{95}{13} = \frac{285}{13}
+    \]
+
+    \medskip
+
+    Hence the expected total point value of the first three cards is $\frac{285}{13}$ points.
+\end{proof}
+
+\begin{corollary}
+    Removing all cards of either color does not change the expected total point value of the top 
+    three cards, i.e., $\frac{285}{13}$.
+\end{corollary}
+
+\begin{proof}
+    Claim $2$ establishes the case where the red cards are removed, leaving an all-black deck.
+
+    \medskip
+
+    The case where the black cards are removed follows by symmetry. Each of the $13$ ranks has exactly $2$ 
+    red and $2$ black cards, so interchanging the roles of red and black in the proof of Claim $2$ gives the 
+    corresponding result for the all-red deck.
+
+    \medskip
+
+    Hence the expected total point value of the top three cards is $\frac{285}{13}$ regardless.
+\end{proof}
+
+\end{document}

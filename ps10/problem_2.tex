@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+There are about $250{,}000{,}000$ people in the United States who might use a phone. To keep the problem 
+simple, we ignore the fact that people are on the phone more often at certain times of day and on certain 
+days of the year. Assume that each person is on the phone during each minute mutually independently with 
+probability $p = 0.01$.
+
+\begin{claim}
+    The expected number of people on the phone at a given moment is $2{,}500{,}000$.
+\end{claim}
+
+\begin{proof}
+    For each person $i$, define the indicator random variable
+    \[
+    X_i =
+    \begin{cases}
+    1 & \text{if person } i \text{ is on the phone} \\
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+    Since a person is on the phone with probability $0.01$,
+    \[
+    \mathrm{E}[X_i] = 1(0.01) + 0(0.99) = 0.01
+    \]
+
+    \medskip
+
+    Let $X$ denote the total number of people on the phone at a given moment. Then
+    \[
+    X = X_1 + X_2 + \dots + X_{250{,}000{,}000}
+    \]
+    By linearity of expectation,
+    \[
+    \begin{aligned}
+    \mathrm{E}[X] &= \sum_{i=1}^{250{,}000{,}000}\mathrm{E}[X_i] \\ 
+    &= 250{,}000{,}000(0.01) \\
+    &= 2{,}500{,}000
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the expected number of people on the phone at a given moment is $2{,}500{,}000$.
+\end{proof}
+
+\begin{claim}
+    Suppose that we construct a phone network whose capacity is a mere one percent above the expectation.
+    Then the probability that the network is overloaded in a given minute is at most 
+    $2^{-165.64} \approx 1.37 \times 10^{-50}$. % not the tightest (checked answer key) but good enough
+\end{claim}
+
+\begin{proof}
+    Let $X$ denote the number of people on the phone at a given moment, so $X \sim \mathrm{Binomial}(n, p)$
+    with $n = 250{,}000{,}000$ and $p = 0.01$. By Claim $1$, $\mathrm{E}[X] = 2{,}500{,}000$.
+
+    \medskip
+    
+    Let $a = 1.01 \cdot \mathrm{E}[X] = 2{,}525{,}000$ denote the network's capacity. The network is
+    overloaded precisely when $X > a$. Since $X$ is integer-valued, this is equivalent to
+    \[
+    X \geq a + 1 = 2{,}525{,}001
+    \]
+
+    \medskip
+
+    We may write the tail probability as
+    \[
+    \Pr\{X > a\} = \sum_{k = a+1}^{n} \mathrm{PDF}_X(k)
+    \]
+    Since $a+1$ already exceeds $\mathrm{E}[X]$, the terms $\mathrm{PDF}_X(k)$ are decreasing for
+    $k \geq a+1$. Hence every term in the sum is at most $\mathrm{PDF}_X(a+1)$, and the sum has
+    $n - a$ terms, so
+    \[
+    \Pr\{X > a\} \leq (n-a)\cdot \mathrm{PDF}_X(a+1)
+    \]
+
+    \medskip
+
+    Write $a + 1 = \alpha n$, where
+    \[
+    \alpha = \frac{a+1}{n} = \frac{2{,}525{,}001}{250{,}000{,}000}
+    \]
+    By the Stirling-based approximation of the PDF,
+    \[
+    \mathrm{PDF}_X(\alpha n) \leq \frac{2^{nH(\alpha)}}{\sqrt{2\pi\alpha(1-\alpha)n}}\cdot p^{\alpha n}(1-p)^{(1-\alpha)n}
+    \]
+    where $H(\alpha) = \alpha\log_2\frac{1}{\alpha} + (1-\alpha)\log_2\frac{1}{1-\alpha}$.
+
+    \medskip
+
+    Putting the two bounds together,
+    \[
+    \Pr\{X > a\} \leq (n-a)\cdot \frac{2^{nH(\alpha)}}{\sqrt{2\pi\alpha(1-\alpha)n}}\cdot p^{\alpha n}(1-p)^{(1-\alpha)n}
+    \]
+    Since the right-hand side involves numbers far too large to evaluate directly, we take
+    $\log_2$ of both sides (this is valid since $\log_2$ is increasing):
+    \[
+    \begin{aligned}
+    \log_2\Pr\{X > a\} \leq \log_2(n-a) + nH(\alpha) - \frac{1}{2}\log_2\left(2\pi\alpha(1-\alpha)n\right) \\ 
+    +\; \alpha n\log_2(p) + (1-\alpha)n\log_2(1-p)
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Substituting $n = 250{,}000{,}000$, $\alpha = \frac{2{,}525{,}001}{250{,}000{,}000}$, and $p = 0.01$,
+    \[
+    \begin{aligned}
+    \log_2\Pr\{X > a\} &\leq \log_2\left(250{,}000{,}000-2{,}525{,}001\right) \\
+    &+250{,}000{,}000H\left(\frac{2{,}525{,}001}{250{,}000{,}000}\right) \\
+    &-\frac{1}{2}\log_2\left(2\pi\left(\frac{2{,}525{,}001}{250{,}000{,}000}\right)
+    \left(1-\frac{2{,}525{,}001}{250{,}000{,}000}\right)250{,}000{,}000\right) \\
+    &+\frac{2{,}525{,}001}{250{,}000{,}000}250{,}000{,}000\log_2(0.01) \\
+    &+ \left(1-\frac{2{,}525{,}001}{250{,}000{,}000}\right)250{,}000{,}000\log_2(0.99) \\
+    &\approx -165.64
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the probability that the network is overloaded in a given minute is at most
+    \[
+    \Pr\{X > a\} \leq 2^{-165.64} \approx 1.37 \times 10^{-50}
+    \]
+\end{proof}
+
+\begin{claim}
+    The expected number of minutes until the system is overloaded for the first time is approximately 
+    $7.29 \times 10^{49}$.
+\end{claim}
+
+\begin{proof}
+    By Claim $2$, the probability of the network overloading in a given moment is at most $2^{-165.64}$. 
+    Thus the expected number of minutes until the system is overloaded for the first time is 
+    \[
+    \frac{1}{2^{-165.64}} \approx 7.29 \times 10^{49}
+    \]
+
+    \medskip
+
+    Hence the expected number of minutes until the system is overloaded for the first time is approximately
+    $7.29 \times 10^{49}$.
+\end{proof}
+
+\end{document}
