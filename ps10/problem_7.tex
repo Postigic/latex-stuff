@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $R_1$ and $R_2$ be independent random variables, and $f_1$ and $f_2$ be any functions such that 
+    $\mathrm{domain}(f_i) = \mathrm{codomain}(R_i)$ for $i \in \{1, 2\}$. Then $f_1(R_1)$ and $f_2(R_2)$ 
+    are independent random variables.
+\end{claim}
+
+\begin{proof}
+    By definition of independence for random variables, 
+    \[
+    \Pr\{[f_1(R_1) = x_1] \cap [f_2(R_2) = x_2]\} = \Pr\{f_1(R_1) = x_1\}\Pr\{f_2(R_2) = x_2\}
+    \]
+    for all $x_1 \in \mathrm{codomain}(f_1)$ and $x_2 \in \mathrm{codomain}(f_2)$. Thus it suffices to 
+    show that the LHS equals the RHS. First, notice that we can rewrite $[f_1(R_1) = x_1]$ as the union of 
+    the function's preimage,
+    \[
+    [f_1(R_1) = x_1] = \bigcup_{r_1 \in f_1^{-1}(x_1)}[R_1 = r_1]
+    \]
+    This applies symmetrically to $[f_2(R_2) = x_2]$, so subsituting into the LHS gives 
+    \[
+    \begin{aligned}
+        &\Pr\{[f_1(R_1) = x_1] \cap [f_2(R_2) = x_2]\} \\[6pt]
+        =\;&\Pr\left\{\left(\bigcup_{r_1 \in f_1^{-1}(x_1)}[R_1 = r_1]\right) 
+        \cap \left(\bigcup_{r_2 \in f_2^{-1}(x_2)}[R_2 = r_2]\right)\right\}
+    \end{aligned}
+    \]
+    Distributing the intersection gives 
+    \[
+    \begin{aligned}
+        &\Pr\left\{\left(\bigcup_{r_1 \in f_1^{-1}(x_1)}[R_1 = r_1]\right) 
+        \cap \left(\bigcup_{r_2 \in f_2^{-1}(x_2)}[R_2 = r_2]\right)\right\} \\[6pt]
+        =\;&\Pr\left\{\bigcup_{\substack{r_1 \in f_1^{-1}(x_1)\\r_2 \in f_2^{-1}(x_2)}}
+        ([R_1 = r_1] \cap [R_2 = r_2])\right\}
+    \end{aligned}
+    \]
+    For distinct pairs $(r_1, r_2) \neq (r_1', r_2')$, at least one of $(r_1 \neq r_1')$ or $(r_2 \neq r_2')$ 
+    holds. Since neither $R_1$ nor $R_2$ can take two different values simultaneously, whichever one differs 
+    corresponds to disjoint events. Hence the probability of the union is the sum of the probabilities. Therefore,
+    \[
+    \begin{aligned}
+        &\Pr\left\{\bigcup_{\substack{r_1 \in f_1^{-1}(x_1)\\r_2 \in f_2^{-1}(x_2)}}
+        ([R_1 = r_1] \cap [R_2 = r_2])\right\} \\[6pt]
+        =\;&\sum_{\substack{r_1 \in f_1^{-1}(x_1)\\r_2 \in f_2^{-1}(x_2)}}\Pr\{R_1 = r_1, R_2 = r_2\}
+    \end{aligned}
+    \]
+    Since $R_1$ and $R_2$ are independent,
+    \[
+    \begin{aligned}
+        &\sum_{\substack{r_1 \in f_1^{-1}(x_1)\\r_2 \in f_2^{-1}(x_2)}}\Pr\{R_1 = r_1, R_2 = r_2\} \\[6pt]
+        =\;&\sum_{r_1 \in f_1^{-1}(x_1)}\sum_{r_2 \in f_2^{-1}(x_2)}\Pr\{R_1 = r_1\}\Pr\{R_2 = r_2\} \\[6pt]
+    \end{aligned}
+    \]
+    Factoring the double sum gives,
+    \[
+    \begin{aligned}
+        &\sum_{r_1 \in f_1^{-1}(x_1)}\sum_{r_2 \in f_2^{-1}(x_2)}\Pr\{R_1 = r_1\}\Pr\{R_2 = r_2\} \\[6pt]
+        =\;&\left(\sum_{r_1 \in f_1^{-1}(x_1)}\Pr\{R_1 = r_1\}\right)
+        \left(\sum_{r_2 \in f_2^{-1}(x_2)}\Pr\{R_2 = r_2\}\right)
+    \end{aligned}
+    \]
+    Notice that we can rewrite the first sum as $\Pr\{f_1(R_1) = x_1\}$, and the second sum as 
+    $\Pr\{f_2(R_2) = x_2\}$. Therefore, 
+    \[
+    \begin{aligned}
+        &\left(\sum_{r_1 \in f_1^{-1}(x_1)}\Pr\{R_1 = r_1\}\right)
+        \left(\sum_{r_2 \in f_2^{-1}(x_2)}\Pr\{R_2 = r_2\}\right) \\[6pt]
+        =\;&\Pr\{f_1(R_1) = x_1\}\Pr\{f_2(R_2) = x_2\} \\[4pt]
+        =\;&\text{RHS}
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence $f_1(R_1)$ and $f_2(R_2)$ are independent random variables.
+\end{proof}
+
+\end{document}

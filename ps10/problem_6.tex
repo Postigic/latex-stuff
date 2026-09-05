@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+The hat-check staff has had a long day, and at the end of the party they decide to return people's hats 
+at random. Suppose that $n$ people have their hats returned at random. 
+
+\medskip
+
+We know that the expected number of people who get their own hat back is $1$, irrespective of the total 
+number of people. We will calculate the variance in the number of people who get their hat back.
+
+\medskip
+
+Let $X_i = 1$ if the $i$th person gets his or her own hat back and $0$ otherwise. Let 
+$S_n = \sum_{i=1}^{n}X_i$, so $S_n$ is the total number of people who get their own hat back.
+
+\begin{claim}
+    \[
+    \mathrm{E}[X_i^2] = \frac{1}{n}
+    \]
+\end{claim}
+
+\begin{proof}
+    Each person $i$'s hat is equally likely to be any of the $n$ hats, so
+    \[
+    \Pr\{X_i = 1\} = \frac{1}{n}
+    \]
+    By the definition of expectation,
+    \[
+    \mathrm{E}[X_i^2] = 1^2\left(\frac{1}{n}\right) + 0^2\left(1 - \frac{1}{n}\right) = \frac{1}{n}
+    \]
+
+    \medskip
+
+    Hence 
+    \[
+    \mathrm{E}[X_i^2] = \frac{1}{n}
+    \]
+\end{proof}
+
+\begin{claim}
+    For $i \neq j$,
+    \[
+    \mathrm{E}[X_iX_j] = \frac{1}{n(n-1)}
+    \]
+\end{claim}
+
+\begin{proof}
+    Person $i$'s hat is equally likely to be any of the $n$ hats, so
+    \[
+    \Pr\{X_i = 1\} = \frac{1}{n}
+    \]
+    Given that person $i$ received their own hat, person $j$'s hat is equally likely to be any of the 
+    remaining $n-1$ hats, so
+    \[
+    \Pr\{X_j = 1\} = \frac{1}{n-1}
+    \]
+    Hence the probability that both $i$ and $j$ receive their own hat is
+    \[
+    \Pr\{X_i = 1, X_j = 1\} = \Pr\{X_i = 1\}\Pr\{X_j = 1 \mid X_i = 1\} = \frac{1}{n(n-1)}
+    \]
+
+    \medskip
+
+    By the definition of expectation,
+    \[
+    \mathrm{E}[X_iX_j] = 1\left(\frac{1}{n(n-1)}\right) + 0\left(1 - \frac{1}{n(n-1)}\right) 
+    = \frac{1}{n(n-1)}
+    \]
+    
+    \medskip
+
+    Hence 
+    \[
+    \mathrm{E}[X_iX_j] = \frac{1}{n(n-1)}
+    \]
+\end{proof}
+
+\begin{claim}
+    \[
+    \mathrm{E}[S_n^2] = 2
+    \]
+\end{claim}
+
+\begin{proof}
+    Since $S_n = \sum_{i=1}^n X_i$,
+    \[
+    S_n^2 = \left(\sum_{i=1}^n X_i\right)^2 = \sum_{i=1}^{n}\sum_{j=1}^{n} X_iX_j 
+    = \sum_{i=1}^{n} X_i^2 + \sum_{i \neq j} X_iX_j
+    \]
+    By linearity of expectation, 
+    \[
+    \mathrm{E}[S_n^2] = \sum_{i=1}^{n}\mathrm{E}[X_i^2] + \sum_{i \neq j}\mathrm{E}[X_iX_j]
+    \]
+    There are $n$ diagonal terms and $n^2 - n = n(n-1)$ off-diagonal terms in the sum. By Claim $1$ and 
+    $2$, $\mathrm{E}[X_i^2] = \frac{1}{n}$ and $\mathrm{E}[X_iX_j] = \frac{1}{n(n-1)}$, so
+    \[
+    \mathrm{E}[S_n^2] = n\left(\frac{1}{n}\right) + n(n-1)\left(\frac{1}{n(n-1)}\right) = 2
+    \]
+
+    \medskip
+
+    Hence 
+    \[
+    \mathrm{E}[S_n^2] = 2
+    \]
+\end{proof}
+
+\begin{claim}
+    \[
+    \mathrm{Var}[S_n] = 1
+    \]
+\end{claim}
+
+\begin{proof}
+    By definition of variance,
+    \[
+    \mathrm{Var}[S_n] = \mathrm{E}[S_n^2] - (\mathrm{E}[S_n])^2
+    \]
+    We know that $\mathrm{E}[S_n] = 1$, and by Claim $3$, $\mathrm{E}[S_n^2] = 2$, so 
+    \[
+    \mathrm{Var}[S_n] = 2 - 1 = 1
+    \]
+
+    \medskip
+
+    Hence
+    \[
+    \mathrm{Var}[S_n] = 1
+    \]
+\end{proof}
+
+\begin{claim}
+    The variance of sums formula cannot be used to calculate $\mathrm{Var}[S_n]$.
+\end{claim}
+
+\begin{proof}
+    For the variance of sums formula, it is required that $\mathrm{Cov}(X_i, X_j) = 0$ for all 
+    $i \neq j$. By definition of covariance,
+    \[
+    \mathrm{Cov}(X_i, X_j) = \mathrm{E}[X_iX_j] - \mathrm{E}[X_i]\mathrm{E}[X_j]
+    \]
+    By Claim $1$ and Claim $2$, $\mathrm{E}[X_i^2] = \frac{1}{n}$ and 
+    $\mathrm{E}[X_iX_j] = \frac{1}{n(n-1)}$. Since $X_i$ is an indicator, $X_i^2 = X_i$, so 
+    $\mathrm{E}[X_i^2] = \mathrm{E}[X_i]$. This applies symmetrically to $X_j$. Therefore,
+    \[
+    \begin{aligned}
+        \mathrm{Cov}(X_i, X_j) &= \frac{1}{n(n-1)} - \frac{1}{n} \cdot \frac{1}{n} \\
+        &= \frac{1}{n(n-1)} - \frac{1}{n^2} \\
+        &= \frac{n - (n-1)}{n^2(n-1)} \\
+        &= \frac{1}{n^2(n-1)} \\
+        &\neq 0
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the variance of sums formula cannot be used to calculate $\mathrm{Var}[S_n]$.
+\end{proof}
+
+\begin{claim}
+    $\Pr\{S_n \geq 11\} \leq 0.01$ for any $n \geq 11$.
+\end{claim}
+
+\begin{proof}
+    By Chebyshev's inequality, 
+    \[
+    \Pr\{|S_n - \mathrm{E}[S_n]| \geq x\} \leq \frac{\mathrm{Var}[S_n]}{x^2}
+    \]
+    We know that $\mathrm{E}[S_n] = 1$, and by Claim $4$, $\mathrm{Var}[S_n] = 1$, so substituting 
+    gives
+    \[
+    \Pr\{|S_n - 1| \geq x\} \leq \frac{1}{x^2}
+    \]
+    Since $S_n \geq 11$ implies $S_n - 1 \geq 10$, and hence $|S_n - 1| \geq 10$, the event 
+    $\{S_n \geq 11\}$ is a subset of the event $\{|S_n - 1| \geq 10\}$. Therefore 
+    \[
+    \Pr\{S_n \geq 11\} \leq \Pr\{|S_n - 1| \geq 10\}
+    \]
+    Substituting $x = 10$ into the above inequality yields 
+    \[
+    \Pr\{|S_n - 1| \geq 10\} \leq \frac{1}{10^2} = \frac{1}{100} = 0.01
+    \]
+    Combining these two inequalities, 
+    \[
+    \Pr\{S_n \geq 11\} \leq 0.01
+    \]
+
+    \medskip
+
+    Hence $\Pr\{S_n \geq 11\} \leq 0.01$ for any $n \geq 11$.
+\end{proof}
+
+\end{document}

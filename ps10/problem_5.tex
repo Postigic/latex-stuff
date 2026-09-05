@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+The army needs to identify soldiers with a disease called ``klep". There is a way to test blood to determine 
+whether it came from someone with klep. The straightforward approach is to test each soldier individually. 
+This requires $n$ tests, where $n$ is the number of soldiers. 
+
+\medskip
+
+A better approach is the following: group the soldiers into groups of $k$. Blend the blood samples of each 
+group and apply the test once to each blended sample. If the group blend doesn't have klep, we are done with 
+that group after one test. If the group blend fails the test, then someone in the group has klep, and we 
+individually test all the soldiers in the group.
+
+\medskip
+
+Assume each soldier has klep with probability, $p$, independently of all the other soldiers.
+
+\begin{claim}
+    Assuming for simplicity that $n$ is divisible by $k$, the expected number of tests as a function of $n$, 
+    $p$, and $k$ is
+    \[
+    \frac{n}{k} + n(1 - (1-p)^k)
+    \]
+\end{claim}
+
+\begin{proof}
+    For each $i \in \{1, 2, \dots, \frac{n}{k}\}$, define the random indicator variable
+    \[
+    X_i =
+    \begin{cases}
+        1 & \text{if group } i \text{ has at least one soldier with klep} \\
+        0 & \text{otherwise}
+    \end{cases}
+    \]
+    The probability that group $i$ has no soldiers with klep is $(1-p)^k$. Thus,
+    \[
+    \mathrm{E}[X_i] = 1\left(1 - (1-p)^k\right) + 0\left((1-p)^k\right) = 1 - (1-p)^k
+    \]
+    Let $T$ denote the number of tests for all groups. Each group requires one initial test, and if $X_i = 1$, 
+    it requires an additional $k$ tests. Therefore,
+    \[
+    T = \sum_{i=1}^{n/k}(1 + kX_i)
+    \]
+    By linearity of expectation,
+    \[
+    \begin{aligned}
+        \mathrm{E}[T] &= \sum_{i=1}^{n/k}\left(1 + k\mathrm{E}[X_i]\right) \\[4pt]
+        &= \frac{n}{k}\left(1 + k\left(1 - (1-p)^k\right)\right) \\[4pt]
+        &= \frac{n}{k} + n(1 - (1-p)^k)
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the expected number of tests is 
+    \[
+    \frac{n}{k} + n(1 - (1-p)^k)
+    \]
+\end{proof}
+
+\begin{claim}
+    The expected number of tests is approximately minimised by choosing 
+    \[
+    k \approx \frac{1}{\sqrt{p}}
+    \]
+    and the resulting expected number of tests is 
+    \[
+    \mathrm{E}[T] \approx 2n\sqrt{p}
+    \]
+\end{claim}
+
+\begin{proof}
+    Since $n$ is a positive scalar independent of $k$, minimising $\mathrm{E}[T] = n \cdot g(k)$ over $k$ is 
+    equivalent to minimising
+    \[
+    g(k) = \frac{1}{k} + 1 - (1-p)^k.
+    \]
+    Treating $k$ as a continuous positive real variable and differentiating with respect to $k$,
+    \[
+    g'(k) = -\frac{1}{k^2} - (1-p)^k \ln(1-p)
+    \]
+    Setting $g'(k) = 0$ and rearranging gives
+    \[
+    \frac{1}{k^2} = -(1-p)^k \ln(1-p)
+    \]
+    Since $0 < p < 1$, we have $0 < 1-p < 1$, so $\ln(1-p) < 0$. Hence the right-hand side of the equation is
+    positive, consistent with the left-hand side.
+
+    \medskip
+
+    The above equation is difficult to solve explicitly for $k$, since $k$ appears in both a power-law term 
+    and an exponential term. We therefore approximate by assuming $p \ll 1$. Using the first-order Taylor 
+    expansions,
+    \[
+    \ln(1-p) \approx -p \quad \text{and} \quad (1-p)^k = e^{k\ln(1-p)} \approx e^{-kp}
+    \]
+    Hence the equation becomes 
+    \[
+    \frac{1}{k^2} \approx pe^{-kp}
+    \]
+    Further assuming that $kp \ll 1$ and applying $e^{-kp} \approx 1 - kp$, we have 
+    \[
+    \frac{1}{k^2} \approx p(1 - kp) = p - kp^2
+    \]
+    Assuming for now that $kp^2 \ll p$, we discard it, leaving 
+    \[
+    \frac{1}{k^2} \approx p \quad \Longrightarrow \quad k \approx \frac{1}{\sqrt{p}}.
+    \]
+    Substituting the resulting estimate $k \approx p^{-1/2}$ gives
+    \[
+    kp \approx \sqrt{p} \ll 1 \quad \text{and} \quad kp^2 \approx p^{3/2} = o(p)
+    \]
+    confirming that both approximations are self-consistent.
+
+    \medskip
+
+    Now it remains to compute the resulting expected number of tests. Substituting $k = \frac{1}{\sqrt{p}}$ 
+    into $g(k)$, 
+    \[
+    g(k) \approx \sqrt{p} + 1 - (1 - \sqrt{p}) = 2\sqrt{p}
+    \]
+    where the last step again uses $e^{-kp} \approx 1 - kp$, with $kp \approx \sqrt{p} \ll 1$. Thus
+    \[
+    \mathrm{E}[T] = n \cdot g(k) \approx 2n\sqrt{p}
+    \]
+
+    \medskip
+
+    Hence the expected number of tests is approximately minimised by choosing 
+    \[
+    k \approx \frac{1}{\sqrt{p}}
+    \]
+    and the resulting expected number of tests is 
+    \[
+    \mathrm{E}[T] \approx 2n\sqrt{p}
+    \]
+\end{proof}
+
+\begin{claim}
+    The fraction of the work that the grouping method saves over the straightforward approach is approximately 
+    $80\%$ in a million-strong army where $1\%$ have klep.
+\end{claim}
+
+\begin{proof}
+    Using the approximate formula $\mathrm{E}[T] \approx 2n\sqrt{p}$, the fraction of work saved is
+    \[
+    1 - \frac{\mathrm{E}[T]}{n} \approx 1 - 2\sqrt{p} = 1 - 2\sqrt{0.01} = 1 - 0.2 = 0.80
+    \]
+
+    \medskip
+
+    Verifying with the exact formula, we first calculate $k = \frac{1}{\sqrt{p}}$ for $p = 0.01$, giving 
+    $k = 10$. Substituting this into the exact formula from Claim~1 gives
+    \[
+    \mathrm{E}[T] = \frac{n}{k} + n\left(1-(1-p)^k\right) = \frac{10^6}{10} + 10^6\left(1-0.99^{10}\right) 
+    \approx 195{,}618
+    \]
+    so the fraction of work saved is
+    \[
+    1 - \frac{195{,}618}{10^6} \approx 0.804
+    \]
+    Since $0.804 \approx 0.80$, the exact formula agrees closely with the approximate formula.
+
+    \medskip
+
+    Hence the grouping method saves $80\%$ of the work over the straight-forward approach.
+\end{proof}
+
+\end{document}
