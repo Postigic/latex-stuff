@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    $0\mathbf{v} = \mathbf{0}$ for all $\mathbf{v} \in V$.
+\end{claim}
+
+\begin{proof}
+    Expanding and distributing $0\mathbf{v}$, we get
+    \[
+    0\mathbf{v} = (0 + 0)\mathbf{v} = 0\mathbf{v} + 0\mathbf{v}
+    \]
+    Let $-(0\mathbf{v})$ be the additive inverse of $0\mathbf{v}$. Then adding to both sides yields
+    \[
+    \begin{aligned}
+        -(0\mathbf{v}) + 0\mathbf{v} &= -(0\mathbf{v}) + 0\mathbf{v} + 0\mathbf{v} \\
+        \mathbf{0} &= \mathbf{0} + 0\mathbf{v} \\
+        \mathbf{0} &= 0\mathbf{v}
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence $0\mathbf{v} = \mathbf{0}$ for all $\mathbf{v} \in V$.
+\end{proof}
+
+\end{document}

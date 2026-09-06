@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    A zero vector $\mathbf{0}$ of a vector space $V$ is unique.
+\end{claim}
+
+\begin{proof}
+    Suppose that $\mathbf{0}$ and $\mathbf{0}'$ are both zero vectors of $V$. By definition of a zero vector,
+    \[
+    \mathbf{v} + \mathbf{0} = \mathbf{v} \quad \text{and} \quad \mathbf{v} + \mathbf{0}' = \mathbf{v}
+    \]
+    for all $\mathbf{v} \in V$. Substituting $\mathbf{v} = \mathbf{0}'$ into the first equation, and 
+    $\mathbf{v} = \mathbf{0}$ into the second, we get
+    \[
+    \begin{aligned}
+        \mathbf{0}' + \mathbf{0} &= \mathbf{0}' \\
+        \mathbf{0} + \mathbf{0}' &= \mathbf{0}
+    \end{aligned}
+    \]
+    Since vector addition is commutative, both LHS are equal, i.e. 
+    $\mathbf{0}' + \mathbf{0} = \mathbf{0} + \mathbf{0}'$. Therefore,
+    \[
+    \mathbf{0}' = \mathbf{0}
+    \]
+
+    \medskip
+
+    Hence a zero vector $\mathbf{0}$ of a vector space $V$ is unique.
+\end{proof}
+
+\end{document}

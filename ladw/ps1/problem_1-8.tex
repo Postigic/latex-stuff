@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    The additive inverse of a vector $\mathbf{v} \in V$ is given by $(-1)\mathbf{v}$.
+\end{claim}
+
+\begin{proof}
+    It suffices to show that 
+    \[
+    \mathbf{v} + (-1)\mathbf{v} = \mathbf{0}
+    \]
+    From the LHS,
+    \[
+    \begin{aligned}
+        \mathbf{v} + (-1)\mathbf{v} &= (1)\mathbf{v} + (-1)\mathbf{v} \\
+        &= (1 + (-1))\mathbf{v} \\
+        &= 0\mathbf{v} \\
+        &= \mathbf{0} \\
+        &= \text{RHS}
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the additive inverse of a vector $\mathbf{v} \in V$ is given by $(-1)\mathbf{v}$.
+\end{proof}
+
+\end{document}

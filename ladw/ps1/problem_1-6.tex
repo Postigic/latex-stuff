@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    The additive inverse of a vector $\mathbf{v} \in V$ is unique.
+\end{claim}
+
+\begin{proof}
+    Let $\mathbf{v} \in V$ be arbitrary. Suppose that $\mathbf{w}$ and $\mathbf{u}$ are both additive inverses 
+    of $\mathbf{v}$. By definition of an additive inverse, 
+    \[
+    \mathbf{v} + \mathbf{w} = \mathbf{0} \quad \text{and} \quad \mathbf{v} + \mathbf{u} = \mathbf{0}
+    \]
+    Then add $\mathbf{w}$ to both sides of the second equation, 
+    \[
+    \begin{aligned}
+        \mathbf{v} + \mathbf{u} &= \mathbf{0} \\
+        \mathbf{w} + (\mathbf{v} + \mathbf{u}) &= \mathbf{w} + \mathbf{0} \\
+        (\mathbf{w} + \mathbf{v}) + \mathbf{u} &= \mathbf{w} + \mathbf{0} \\
+        \mathbf{0} + \mathbf{u} &= \mathbf{w} + \mathbf{0} \\
+        \mathbf{u} &= \mathbf{w}
+    \end{aligned}
+    \]
+
+    \medskip
+
+    Hence the additive inverse of a vector $\mathbf{v} \in V$ is unique.
+\end{proof}
+
+\end{document}
