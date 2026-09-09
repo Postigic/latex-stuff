@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+\DeclareMathOperator{\spn}{span}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ be linearly dependent. Then the vectors 
+    $\mathbf{w}_1 = \mathbf{v}_1 + \mathbf{v}_2, \mathbf{w}_2 = \mathbf{v}_2 + \mathbf{v}_3, 
+    \mathbf{w}_3 = \mathbf{v}_3 + \mathbf{v}_1$ are also linearly dependent. 
+\end{claim}
+
+\begin{proof}
+    Since each $\mathbf{w}_i$ for $i \in \{1, 2, 3\}$ is a linear combination of 
+    $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$, so every $\mathbf{w}_i$ lies in the span of 
+    $\spn\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}$. Hence 
+    \[
+    \spn\{\mathbf{w}_1, \mathbf{w}_2, \mathbf{w}_3\} 
+    \subseteq \spn\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}
+    \]
+    Since $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are linearly dependent,
+    \[
+    \dim(\spn\{\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\}) \leq 2
+    \]
+    Therefore, 
+    \[
+    \dim(\spn\{\mathbf{w}_1, \mathbf{w}_2, \mathbf{w}_3\} ) \leq 2
+    \]
+    But $\mathbf{w}_1, \mathbf{w}_2, \mathbf{w}_3$ are three vectors that lying in a space of at most 
+    dimension $2$, so they must be linearly dependent.
+
+    \medskip
+
+    Hence $\mathbf{w}_1, \mathbf{w}_2, \mathbf{w}_3$ are linearly dependent.
+\end{proof}
+
+\end{document}
