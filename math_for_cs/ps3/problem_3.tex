@@ -59,31 +59,32 @@
 \end{claim}
 
 \begin{proof}
-    Suppose for contradiction that $C$ is not maximal. Then there exists $x \in [n] 
-    \setminus C$ such that $C \cup \{x\}$ is a chain. Hence $x$ is comparable with 
-    every element of $C$. There are three cases:
-
-    \medskip
-    \textit{Case 1: $x \mid 1$.}
-    Since $x \geq 1$ and $x \mid 1$, hence $x = 1 \in C$. This is a contradiction.
-
-    \medskip
-    \textit{Case 2: $2^{\lfloor \log_2 n \rfloor} \mid x$.}
-    Since $x \in [n]$, we have $2^{\lfloor \log_2 n \rfloor} \leq x \leq n <
-    2^{\lfloor \log_2 n \rfloor + 1}$, so $x = 2^{\lfloor \log_2 n \rfloor} \in C$. 
-    This is a contradiction.
-
-    \medskip
-    \textit{Case 3: $2^k \mid x$ and $x \mid 2^{k+1}$ for some $k \in \{0, 1, 
-    \dots, \lfloor \log_2 n \rfloor - 1\}$.}
-    Since $x \mid 2^{k+1}$, $x$ must be a divisor of $2^{k+1}$. The divisors of 
-    $2^{k+1}$ are exactly $1, 2, 4, \dots, 2^{k+1}$, so $x \in \{2^0, 2^1, 2^2, 
-    \dots, 2^{k+1}\}$. Since $2^k \mid x$, we have $x \geq 2^k$, so $x \in \{2^k, 
-    2^{k+1}\} \subset C$. This is a contradiction.
+    Let $m = \lfloor\log_2 n\rfloor$. Suppose, for contradiction, that $C$ is not 
+    maximal. Then there exists $x \in [n] \setminus C$ such that $C \cup \{x\}$ is 
+    a chain. Hence $x$ is comparable with $2^m \in C$. There are two possibilities:
 
     \medskip
 
-    In all cases, $x \in C$, contradicting $x \notin C$. Hence $C$ is maximal.
+    If $x \mid 2^m$, then $x$ is a divisor of $2^m$. Since the divisors of $2^m$ 
+    are precisely 
+    \[
+    1, 2, 4, \dots, 2^m
+    \]
+    we have $x \in C$. A contradiction.
+
+    \medskip
+
+    If $2^m \mid x$, then since $x \in [n]$, 
+    \[
+    2^m \leq x \leq n < 2^{m+1}
+    \]
+    The only multiple of $2^m$ in this interval is $2^m$, so $x = 2^m \in C$, 
+    again a contradiction.
+
+    \medskip
+
+    Thus no element $x \notin C$ can be added to $C$ while preserving the chain 
+    property. Therefore $C$ is a maximal chain.
 \end{proof}
 
 \begin{claim}
