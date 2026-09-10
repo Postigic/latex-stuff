@@ -12,37 +12,48 @@
 \end{claim}
 
 \begin{proof}
-    Assume $G$ has an Eulerian circuit $C$.
+    ($\Longrightarrow$) Assume $G$ has an Eulerian circuit $C$.
 
     \medskip
 
     Consider any arbitrary vertex $v$. Every time the circuit arrives at $v$, it must also leave $v$ along a 
-    different edge. Thus the edges incident to $v$ can be paired up as one edge used to enter $v$ and one edge used 
-    to leave $v$. Therefore the incident edges occur in pairs, meaning $\deg(v)$ is even. Since $v$ is arbitrary, 
-    every vertex of $G$ has even degree.
+    different edge. Thus the edges incident to $v$ can be paired up as one edge used to enter $v$ and one edge 
+    used to leave $v$. Therefore the incident edges occur in pairs, meaning $\deg(v)$ is even. Since $v$ is 
+    arbitrary, every vertex of $G$ has even degree.
 
     \medskip
 
-    Assume every vertex of $G$ has even degree. We then induct on the number of edges in $G$.
+    ($\Longleftarrow$) Assume every vertex of $G$ has even degree. We use strong induction on the number of edges 
+    in $G$.
 
     \medskip
 
-    \textbf{Base case:} If $G$ has no edges, i.e. one vertex, the statement is trivially true.
+    \textbf{Base case:} If $G$ has no edges, then since $G$ is connected, it consists of a single vertex. The 
+    trivial circuit is an Eulerian circuit.
 
     \medskip
 
-    \textbf{Inductive step:} We assume that every connected graph with $n$ edges and even degree vertices has an 
-    Eulerian circuit. Let $H$ be a connected graph with $n+1$ edges and even degree vertices. Since every vertex 
-    has even degree, every vertex has degree at least $2$. Hence any maximal path in $H$ must eventually revisit a 
-    vertex, forming a cycle $C$.
+    \textbf{Inductive step:} Suppose that every connected graph with at most $n$ edges and even degree vertices 
+    has an Eulerian circuit. Let $H$ be a connected graph with $n+1$ edges and even degree vertices. 
 
     \medskip
     
-    Remove the edges of $C$ from $H$, leaving a graph $H'$. Let $H_1,\dots,H_k$ be the connected components of $H'$. 
-    Each $H_i$ is connected by definition, and has all even degrees since removing the edges of $C$ reduces the 
-    degree of cycle vertices by exactly $2$. By the inductive hypothesis, each $H_i$ has an Eulerian circuit. Since 
-    $H$ was connected, each $H_i$ shares at least one vertex with $C$. By splicing the Eulerian circuit of each $H_i$
-    into $C$, we obtain an Eulerian circuit for $H$. Therefore $H$ has an Eulerian circuit.
+    Since every vertex has even degree and $H$ has edges, every vertex has degree at least $2$. Thus, starting 
+    from any vertex and following a path without repeating vertices, since $H$ is finite and every vertex has 
+    degree at least $2$, eventually we must encounter a previously visited vertex, which gives a cycle $C$.
+
+    \medskip
+    
+    Now, remove the edges of $C$ from $H$, leaving a graph $H'$. Let $H_1,\dots,H_k$ be the connected components 
+    of $H'$. Removing $C$ decreases the degree of each vertex of $C$ by $2$, so every vertex in each $H_i$ still 
+    has even degree. Moreover, each $H_i$ has fewer than $n+1$ edges, so by the inductive hypothesis, each $H_i$ 
+    has an Eulerian circuit.
+
+    \medskip
+
+    Since $H$ was connected, each $H_i$ must contain at least one vertex of $C$. At such a common vertex, we can 
+    traverse $C$ until reaching that vertex, traverse the Eulerian circuit of $H_i$, and then continue along $C$. 
+    Repeating this for each $H_i$, we obtain an Eulerian circuit for $H$.
 
     \medskip
 
