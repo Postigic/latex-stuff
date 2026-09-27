@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    If $AB$ is invertible and either $A$ or $B$ is invertible, then the other factor is also invertible.
+\end{claim}
+
+\begin{proof}
+    Assume WLOG that $A$ is invertible, so $A$ is $n \times n$ for some $n$. Since $AB$ is defined, $B$ must 
+    have $n$ rows, say $B$ is $n \times m$, so $AB$ is $n \times m$ as well. But $AB$ is invertible, hence 
+    square, so $m = n$. Thus $B$ is also $n \times n$.
+
+    \medskip
+
+    It remains to show $B$ is invertible. Since $A$ is invertible, so is $A^{-1}$, and
+    \[
+        A^{-1}(AB) = (A^{-1}A)B = IB = B.
+    \]
+    Thus $B$ is a product of two invertible matrices, $A^{-1}$ and $AB$, and is therefore itself invertible.
+
+    \medskip
+
+    Hence the other factor is also invertible.
+\end{proof}
+
+\end{document}
