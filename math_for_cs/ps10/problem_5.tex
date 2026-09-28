@@ -80,7 +80,7 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
     Since $n$ is a positive scalar independent of $k$, minimising $\mathrm{E}[T] = n \cdot g(k)$ over $k$ is 
     equivalent to minimising
     \[
-    g(k) = \frac{1}{k} + 1 - (1-p)^k.
+    g(k) = \frac{1}{k} + 1 - (1-p)^k
     \]
     Treating $k$ as a continuous positive real variable and differentiating with respect to $k$,
     \[
@@ -125,8 +125,8 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
 
     \medskip
 
-    To confirm this critical point is a minimum, we examine the second derivative. 
-    Differentiating $g'(k)$, and using $\frac{d}{dk}(1-p)^k = (1-p)^k\ln(1-p)$,
+    Having approximated the critical point, we now confirm that it is a minimum by examining the second 
+    derivative. Differentiating $g'(k)$, and using $\frac{d}{dk}(1-p)^k = (1-p)^k\ln(1-p)$,
     \[
     g''(k) = \frac{2}{k^3} - (1-p)^k\ln^2(1-p)
     \]
@@ -154,6 +154,12 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
     using $\ln(1-p) \approx -p$ for $p \ll 1$. Our critical point satisfies $k \approx p^{-1/2}$, and since 
     $p^{-1/2} \ll 2p^{-1}$ for small $p$, we have $g''(k) > 0$. Therefore the critical point is a local 
     minimum.
+
+    \medskip
+    
+    Moreover, this local minimum is also the global minimum, since $g(k) \to \infty$ as $k \to 0^+$ and 
+    $g(k) \to 1$ as $k \to \infty$, while at the critical point $g(k) \approx 2\sqrt{p} < 1$ for small $p$,
+    as computed below.
 
     \medskip
 
