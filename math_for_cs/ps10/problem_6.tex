@@ -59,7 +59,7 @@ $S_n = \sum_{i=1}^{n}X_i$, so $S_n$ is the total number of people who get their 
     Given that person $i$ received their own hat, person $j$'s hat is equally likely to be any of the 
     remaining $n-1$ hats, so
     \[
-    \Pr\{X_j = 1\} = \frac{1}{n-1}
+    \Pr\{X_j = 1 \mid X_i = 1\} = \frac{1}{n-1}
     \]
     Hence the probability that both $i$ and $j$ receive their own hat is
     \[
