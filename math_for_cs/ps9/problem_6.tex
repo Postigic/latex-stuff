@@ -115,23 +115,22 @@ Also, suppose the outcome of each throw is independent of all the other throws.
     \[
     \Pr\{\text{ball lands in the first box}\} = \frac{1}{n}
     \]
-    Consider any fixed set of $k$ balls. By independence, the probability that at least $k$ balls fall in the 
+    Consider any fixed set of $k$ balls. By independence, the probability that those $k$ balls fall in the 
     first box is
     \[
     \Pr\{\text{those } k \text{ balls land in the first box}\} = \left(\frac{1}{n}\right)^k
     \]
-    Thus the probability that $k$ balls fall in the first box is
+    Thus the probability that at least $k$ balls fall in the first box is
     \[
-    \Pr\{k \text{ balls land in the first box}\} = \binom{n}{k}\left(\frac{1}{n}\right)^k
+    \Pr\{\text{at least } k \text{ balls land in the first box}\} \leq \binom{n}{k}\left(\frac{1}{n}\right)^k
     \]
 
     \medskip
 
-    It remains to justify why this gives an upper bound rather than an equality for the probability that at 
-    least $k$ balls fall in the first box. If more than $k$ balls fall in the first box, then a single outcome 
-    is counted for several different choices of $k$ balls. Hence, when summing over all $\binom{n}{k}$ choices, 
-    such outcomes are counted more than once. Therefore the above expression overestimates the desired 
-    probability, which gives the inequality.
+    The inequality holds because if more than $k$ balls fall in the first box, then a single outcome is counted 
+    for several different choices of $k$ balls. Hence, when summing over all $\binom{n}{k}$ choices, such 
+    outcomes are counted more than once. Therefore the above expression overestimates the desired probability, 
+    which gives the inequality.
 
     \medskip
 
@@ -201,13 +200,14 @@ Also, suppose the outcome of each throw is independent of all the other throws.
 \end{claim}
 
 \begin{proof}
-    Substituting $k=n^\epsilon$ into the previous claim gives
+    Since $R$ is integer-valued, $R \geq n^\epsilon$ if and only if $R \geq \lceil n^\epsilon \rceil$. 
+    Substituting $k = \lceil n^\epsilon \rceil$ into the previous claim gives
     \[
-    \Pr\{R \geq n^\epsilon\} \leq \frac{n}{(n^\epsilon)!}
+    \Pr\{R \geq n^\epsilon\} = \Pr\{R \geq \lceil n^\epsilon \rceil\} \leq \frac{n}{\lceil n^\epsilon \rceil!}
     \]
     Since factorial growth dominates polynomial growth,
     \[
-    \lim_{n \to \infty}\frac{n}{(n^\epsilon)!} = 0
+    \lim_{n \to \infty}\frac{n}{\lceil n^\epsilon \rceil!} = 0
     \]
 
     \medskip
