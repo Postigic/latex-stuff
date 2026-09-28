@@ -97,9 +97,13 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
 
     The above equation is difficult to solve explicitly for $k$, since $k$ appears in both a power-law term 
     and an exponential term. We therefore approximate by assuming $p \ll 1$. Using the first-order Taylor 
-    expansions,
+    expansion,
     \[
-    \ln(1-p) \approx -p \quad \text{and} \quad (1-p)^k = e^{k\ln(1-p)} \approx e^{-kp}
+    \ln(1-p) \approx -p
+    \]
+    we get
+    \[
+    (1-p)^k = e^{k\ln(1-p)} \approx e^{-kp}
     \]
     Hence the equation becomes 
     \[
@@ -121,9 +125,35 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
 
     \medskip
 
-    For small $k$, the term $-\frac{1}{k^2}$ dominates, so $g'(k) < 0$. Just past the critical point, the term 
-    $-(1-p)^k\ln(1-p)$ dominates, so $g'(k) > 0$. Hence $g$ decreases then increases, so the critical point is 
-    a local minimum.
+    To confirm this critical point is a minimum, we examine the second derivative. 
+    Differentiating $g'(k)$, and using $\frac{d}{dk}(1-p)^k = (1-p)^k\ln(1-p)$,
+    \[
+    g''(k) = \frac{2}{k^3} - (1-p)^k\ln^2(1-p)
+    \]
+    At the critical point,
+    \[
+    \frac{1}{k^2} = -(1-p)^k\ln(1-p)
+    \]
+    Dividing both sides by $-\ln(1-p)$ (which is nonzero since $0 < p < 1$),
+    \[
+    (1-p)^k = -\frac{1}{k^2\ln(1-p)}
+    \]
+    Substituting this into the second term of $g''(k)$, 
+    \[
+    (1-p)^k \ln^2(1-p) = -\frac{\ln^2(1-p)}{k^2\ln(1-p)} = -\frac{\ln(1-p)}{k^2}
+    \]
+    Hence, at the critical point,
+    \[
+    g''(k) = \frac{2}{k^3} + \frac{\ln(1-p)}{k^2} = \frac{1}{k^2}\left(\frac{2}{k} + \ln(1-p)\right)
+    \]
+    Since $\frac{1}{k^2} > 0$, the sign of $g''(k)$ is the sign of $\frac{2}{k} + \ln(1-p)$. This is positive 
+    precisely when
+    \[
+    k < \frac{2}{-\ln(1-p)} \approx \frac{2}{p}
+    \]
+    using $\ln(1-p) \approx -p$ for $p \ll 1$. Our critical point satisfies $k \approx p^{-1/2}$, and since 
+    $p^{-1/2} \ll 2p^{-1}$ for small $p$, we have $g''(k) > 0$. Therefore the critical point is a local 
+    minimum.
 
     \medskip
 
@@ -132,7 +162,8 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
     \[
     g(k) \approx \sqrt{p} + 1 - (1 - \sqrt{p}) = 2\sqrt{p}
     \]
-    where the last step again uses $e^{-kp} \approx 1 - kp$, with $kp \approx \sqrt{p} \ll 1$. Thus
+    where the last step again uses $(1 - p)^k \approx e^{-kp} \approx 1 - kp$, with $kp \approx \sqrt{p} \ll 1$. 
+    Thus
     \[
     \mathrm{E}[T] = n \cdot g(k) \approx 2n\sqrt{p}
     \]
