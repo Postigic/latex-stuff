@@ -4,13 +4,14 @@
 \setlength{\parindent}{0pt}
 
 \newtheorem{claim}{Claim}
-\newtheorem*{corollary}{Corollary}
 
 \begin{document}
 
+Let $n = p \cdot q$ where $p, q$ are distinct odd primes, let $e$ be the public key and $d$ the private
+key of the RSA protocol, and let $x = e \cdot d - 1$.
+
 \begin{claim}
-    Let $n = p \cdot q$ where $p, q$ are both distinct odd primes and $x = e \cdot d - 1$ where $e$ is the public key and
-    $d$ is the private key of the RSA protocol. Then $\phi(n) \mid x$.
+    $\phi(n) \mid x$.
 \end{claim}
 
 \begin{proof}
@@ -33,7 +34,7 @@
 \end{proof}
 
 \begin{claim}
-    $4 \mid x$
+    $4 \mid x$.
 \end{claim}
 
 \begin{proof}
@@ -70,7 +71,7 @@
     \[
     \begin{aligned}
     (r^{\phi(n)})^{k} &\equiv 1^{k} \pmod{n} \\
-    r^{k \cdot \phi(n)} &\equiv 1 \pmod{n} \\
+    r^{k \cdot \phi(n)} &\equiv 1 \pmod{n}
     \end{aligned}
     \]
     Since $x = k \cdot \phi(n)$,
@@ -82,6 +83,13 @@
 
     Hence if $\gcd(r, n) = 1$, then $r^{x} \equiv 1 \pmod{n}$.
 \end{proof}
+
+Since $x$ is even by Claim 2, for any integer $r$ we may compute the remainder $y$ of $r^{x/2}$ divided by 
+$n$, so $y \equiv r^{x/2} \pmod{n}$. If $\gcd(r, n) = 1$, then by Claim 3,
+\[
+y^2 \equiv r^{x} \equiv 1 \pmod{n}
+\]
+so $y$ is a square root of $1 \pmod{n}$. It is nontrivial if $y \not\equiv \pm 1 \pmod{n}$.
 
 \begin{claim}
     If $y$ is a nontrivial square root of $1 \pmod{n}$, then you can factor $n$.
@@ -96,7 +104,7 @@
     \[
     n \mid (y^{2} - 1)
     \]
-    Since $n = pq$ from Claim 1, substituting in gives:
+    Since $n = pq$, substituting in gives:
     \[
     pq \mid (y^{2} - 1)
     \]
@@ -107,8 +115,8 @@
 
     \medskip
 
-    Since $pq \mid (y - 1)(y + 1)$, $p \mid (y - 1)(y + 1)$ and $q \mid (y - 1)(y + 1)$. Since $p$ and $q$ are prime, 
-    by Euclid's lemma:
+    Since $pq \mid (y - 1)(y + 1)$, $p \mid (y - 1)(y + 1)$ and $q \mid (y - 1)(y + 1)$. Since $p$ and $q$ 
+    are prime, by Euclid's lemma:
     \[
     p \mid (y - 1) \quad \text{or} \quad p \mid (y + 1)
     \]
@@ -116,7 +124,7 @@
     \[
     q \mid (y - 1) \quad \text{or} \quad q \mid (y + 1)
     \]
-    
+
     \medskip
 
     Suppose $p \mid (y - 1)$ and $q \mid (y - 1)$. Since $p$ and $q$ are distinct primes:
@@ -131,8 +139,8 @@
     \[
     y \equiv 1 \pmod{n}
     \]
-    However, this contradicts the assumption that $y$ is a nontrivial square root of $1 \pmod{n}$. Therefore this 
-    case is impossible.
+    However, this contradicts the assumption that $y$ is a nontrivial square root of $1 \pmod{n}$. 
+    Therefore this case is impossible.
 
     \medskip
 
@@ -148,35 +156,54 @@
     \[
     y \equiv -1 \pmod{n}
     \]
-    Which again, contradicts the assumption that $y$ is a nontrivial square root of $1 \pmod{n}$. Therefore this 
-    case is also impossible.
+    Which again, contradicts the assumption that $y$ is a nontrivial square root of $1 \pmod{n}$. Therefore 
+    this case is also impossible.
 
     \medskip
 
-    Therefore, exactly one of $p$ and $q$ divides $y - 1$ and the other divides $y + 1$. Without loss of generality, 
-    suppose $p \mid (y - 1)$ and $q \mid (y + 1)$. Since $p \mid (y - 1)$, $p \mid n$, and $q \nmid (y - 1)$, 
-    the only prime divisor of $n$ that divides $y - 1$ is $p$. Hence:
+    Therefore, one of $p$ and $q$ divides $y - 1$ and the other divides $y + 1$, and neither divides both, 
+    since that would place us in one of the two impossible cases above. Without loss of generality, suppose
+    $p \mid (y - 1)$ and $q \mid (y + 1)$, so $q \nmid (y - 1)$ and $p \nmid (y + 1)$. Since $n = pq$, the 
+    only positive divisor of $n$ containing $p$ but not $q$ is $p$. Hence:
     \[
     \gcd(y - 1, n) = p
     \]
-    Likewise for $q$:
+    Likewise:
     \[
     \gcd(y + 1, n) = q
     \]
+    Both can be computed efficiently by the Euclidean algorithm.
 
     \medskip
 
     Therefore if $y$ is a nontrivial square root of $1 \pmod{n}$, you can factor $n$.
 \end{proof}
 
-\begin{corollary}
-    If, in addition to knowing $n$ and the public key $e$, you also knew the private key $d$, then you can factor $n$.
-\end{corollary}
+\begin{claim} % this setup is actually false apparently but that's what they gave me so i'll leave it be
+    Suppose that at least half of the positive integers $r < n$ that are relatively prime to $n$ yield a 
+    value of $y \equiv r^{x/2} \pmod{n}$ that is a nontrivial square root of $1 \pmod{n}$. Then if, in 
+    addition to $n$ and the public key $e$, you also know the private key $d$, you can factor $n$.
+\end{claim}
 
 \begin{proof}
-    By the given statement, at least half of the admissable choices of $r$ produce a nontrivial square root of $1 
-    \pmod{n}$. By Claim 4, any such square root yields a factorisation of $n$. Hence repeated random choices of $r$ 
-    eventually factor $n$.
+    Knowing $e$ and $d$, we can compute $x = ed - 1$. Hence, for any admissible $r$, we can compute
+    $y \equiv r^{x/2} \pmod{n}$, which by the discussion preceding Claim 4 is a square root of $1 \pmod{n}$.
+
+    \medskip
+
+    By Claim 4, any nontrivial square root of $1 \pmod{n}$ yields a factorisation of $n$. By assumption, at 
+    least half of the admissible choices of $r$ produce such a square root, so a uniformly random admissible 
+    $r$ has probability at least $1/2$ of yielding a factorisation of $n$.
+
+    \medskip
+
+    Thus, after $k$ independent random choices of $r$, the probability of failing every time is at most 
+    $(1/2)^k$. As $k \to \infty$, this probability tends to $0$, so the probability of eventually factoring 
+    $n$ tends to $1$.
+
+    \medskip
+
+    Hence if you know $n$, $e$, and $d$, you can factor $n$.
 \end{proof}
 
 \end{document}

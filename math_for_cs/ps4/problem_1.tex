@@ -4,6 +4,7 @@
 \setlength{\parindent}{0pt}
 
 \newtheorem{claim}{Claim}
+\newtheorem*{corollary}{Corollary}
 
 \begin{document}
 
@@ -59,6 +60,16 @@
     Thus such a bijection $e : B \to A$ exists. 
 \end{proof}
 
+\begin{corollary}
+    Let $f : A \to B$ be a bijection, and let $e : B \to A$ be the bijection from Claim 2,
+    so that $e \circ f = I_A$. Then $f \circ e = I_B$.
+\end{corollary}
+
+\begin{proof}
+    Let $b \in B$. By definition of $e$, $e(b)$ is the unique $a \in A$ such that $f(a) = b$.
+    Hence $f(e(b)) = b$, so $f \circ e = I_B$.
+\end{proof}
+
 \begin{claim}
     Graph isomorphism is an equivalence relation.
 \end{claim}
@@ -78,12 +89,12 @@
     
     \medskip
     \textbf{Symmetry.}
-    Suppose $G \sim H$, so there exists an isomorphism $f : V(G) \to V(H)$. From Claim 2, $f^{-1} 
-    : V(H) \to V(G)$ is a bijection. Let $u, v \in V(H)$. Since $f$ is an isomorphism, 
+    Suppose $G \sim H$, so there exists an isomorphism $f : V(G) \to V(H)$. Let $e : V(H) \to V(G)$ be 
+    the bijection from Claim $2$. Let $u, v \in V(H)$. Since $f$ is an isomorphism, 
     \[
-    f^{-1}(u)f^{-1}(v) \in E(G) \iff f(f^{-1}(u))f(f^{-1}(v)) \in E(H) \iff uv \in E(H)
+    e(u)e(v) \in E(G) \iff f(e(u))f(e(v)) \in E(H) \iff uv \in E(H)
     \]
-    Hence $f^{-1}$ is an isomorphism and $H \sim G$.
+    where the second equivalence follows from the Corollary. Hence $e$ is an isomorphism and $H \sim G$.
 
     \medskip
     \textbf{Transitivity.}

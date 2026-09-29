@@ -63,15 +63,34 @@
 
 \begin{proof}
     Let $D$ denote the outcome of this morning's die roll. We condition on the result of this 
-    morning's roll. If $D = 1$, the student does not delay his laundry, contributing $0$ days. 
+    morning's roll. 
+
+    \medskip
+
+    Since $R \geq k$ if and only if the first $k$ rolls are all not $1$, and the die is fair,
+    \[
+    \Pr\{R \geq k\} = \left(\frac{5}{6}\right)^k
+    \]
+    by independence. By the tail-sum formula,
+    \[
+    \mathrm{E}[R] = \sum_{k\geq1}\Pr\{R \geq k\} = \sum_{k\geq1}\left(\frac{5}{6}\right)^k 
+    < \infty
+    \]
+
+    \medskip
+    
+    If $D = 1$, the student does not delay his laundry, contributing $0$ days. 
     If $D \neq 1$, the student delays for one day and the remaining process has the same 
     distribution as the original process, since the next morning's roll is independent of all 
     previous rolls. Thus, the expected delay from that point onward is again $\mathrm{E}[R]$. 
-    Therefore, by conditioning on the first roll,
+
+    \medskip
+    
+    Since $\mathrm{E}[R]$ is finite, we can condition on the first roll to obtain
     \[
     \mathrm{E}[R] = 0 \cdot \Pr\{D = 1\} + (1 + \mathrm{E}[R]) \cdot \Pr\{D \neq 1\}
     \]
-    Since the die is fair, there is a probability of $\frac{1}{6}$ of rolling a $1$ on the 
+    Because the die is fair, there is a probability of $\frac{1}{6}$ of rolling a $1$ on the 
     first try, and a probability of $\frac{5}{6}$ otherwise. Plugging into the above equation 
     gives
     \[
