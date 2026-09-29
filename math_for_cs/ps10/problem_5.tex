@@ -113,15 +113,15 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
     \[
     \frac{1}{k^2} \approx p(1 - kp) = p - kp^2
     \]
-    Assuming for now that $kp^2 \ll p$, we discard it, leaving 
+    Since $kp \ll 1$ implies $kp^2 \ll p$, we discard it, leaving 
     \[
     \frac{1}{k^2} \approx p \quad \Longrightarrow \quad k \approx \frac{1}{\sqrt{p}}.
     \]
     Substituting the resulting estimate $k \approx p^{-1/2}$ gives
     \[
-    kp \approx \sqrt{p} \ll 1 \quad \text{and} \quad kp^2 \approx p^{3/2} = o(p)
+    kp \approx \sqrt{p} \ll 1
     \]
-    confirming that both approximations are self-consistent.
+    confirming that the approximation is self-consistent.
 
     \medskip
 
@@ -157,8 +157,8 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
 
     \medskip
     
-    Moreover, this local minimum is also the global minimum. Indeed, there is exactly one local minimum and
-    one local maximum for small $p$, while 
+    Moreover, this local minimum is also the global minimum. One can verify that, for small $p$, $g$ has exactly 
+    one local minimum and one local maximum. Furthermore,
     \[
     g(k) \to \infty \, \text{ as } \, k \to 0^+ \quad \text{and} \quad g(k) \to 1 \, \text{ as } \, k \to \infty
     \]
@@ -217,7 +217,7 @@ Assume each soldier has klep with probability, $p$, independently of all the oth
 
     \medskip
 
-    Hence the grouping method saves $80\%$ of the work over the straight-forward approach.
+    Hence the grouping method saves approximately $80\%$ of the work over the straightforward approach.
 \end{proof}
 
 \end{document}
