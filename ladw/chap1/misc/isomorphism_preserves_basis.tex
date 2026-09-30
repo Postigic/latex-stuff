@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $A : V \to W$ be an isomorphism, and let $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n$ be a basis 
+    in $V$. Then the system $A\mathbf{v}_1, A\mathbf{v}_2, \dots, A\mathbf{v}_n$ is a basis in $W$.
+\end{claim}
+
+\begin{proof}
+    To show that the system is a basis in $W$, we must show that it is both linearly independent and spanning. 
+
+    \medskip
+    \textbf{Linear independence.} Suppose that 
+    \[
+    \alpha_1A\mathbf{v}_1 + \alpha_2A\mathbf{v}_2 + \dots + \alpha_nA\mathbf{v}_n = \mathbf{0}
+    \]
+    for some scalars $\alpha_1, \alpha_2, \dots, \alpha_n$. Since $A$ is linear,
+    \[
+    A(\alpha_1\mathbf{v}_1 + \dots + \alpha_n\mathbf{v}_n) 
+    = \alpha_1A\mathbf{v}_1 + \dots + \alpha_nA\mathbf{v}_n = \mathbf{0}
+    \]
+    Let $\mathbf{u} = \alpha_1\mathbf{v}_1 + \dots + \alpha_n\mathbf{v}_n$. Then 
+    $A\mathbf{u} = \mathbf{0}$. Since $A$ is linear, $A\mathbf{0} = \mathbf{0}$ as well, so 
+    $A\mathbf{u} = A\mathbf{0}$. Since $A$ is an isomorphism, it is injective, so $\mathbf{u} = \mathbf{0}$. 
+    That is,
+    \[
+    \alpha_1\mathbf{v}_1 + \dots + \alpha_n\mathbf{v}_n = \mathbf{0}
+    \]
+    Since $\mathbf{v}_1, \dots, \mathbf{v}_n$ is linearly independent, all $\alpha_k = 0$. Hence the system is 
+    linearly independent.
+
+    \medskip
+    \textbf{Spanning.} Let $\mathbf{w} \in W$ be arbitrary. Since $A$ is an isomorphism, it is surjective. 
+    Hence $A(\mathbf{v}) = \mathbf{w}$ for some $\mathbf{v} \in V$. Since 
+    $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n$ spans $V$, there exist scalars 
+    $\beta_1, \beta_2, \dots, \beta_n$ such that
+    \[
+    \mathbf{v} = \beta_1\mathbf{v}_1 + \beta_2\mathbf{v}_2 + \dots + \beta_n\mathbf{v}_n
+    \]
+    Therefore 
+    \[
+    \mathbf{w} = A(\mathbf{v}) = A(\beta_1\mathbf{v}_1 + \beta_2\mathbf{v}_2 + \dots + \beta_n\mathbf{v}_n)
+    \]
+    Since $A$ is linear,
+    \[
+    \mathbf{w} = \beta_1A\mathbf{v}_1 + \beta_2A\mathbf{v}_2 + \dots + \beta_nA\mathbf{v}_n
+    \]
+    Therefore $\mathbf{w}$ is a linear combination of the system. Since $\mathbf{w}$ is arbitrary, the system 
+    spans $W$.
+
+    \medskip
+
+    Hence the system $A\mathbf{v}_1, A\mathbf{v}_2, \dots, A\mathbf{v}_n$ is a basis in $W$.
+\end{proof}
+
+\end{document}
