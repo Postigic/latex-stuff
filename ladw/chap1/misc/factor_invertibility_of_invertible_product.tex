@@ -12,21 +12,35 @@
 \end{claim}
 
 \begin{proof}
-    Assume WLOG that $A$ is invertible, so $A$ is $n \times n$ for some $n$. Since $AB$ is defined, $B$ must 
-    have $n$ rows, say $B$ is $n \times m$, so $AB$ is $n \times m$ as well. But $AB$ is invertible, hence 
-    square, so $m = n$. Thus $B$ is also $n \times n$.
+    Assume that $A$ is invertible, so $A$ is $n \times n$ for some $n$. Since $AB$ is defined, $B$ must have 
+    $n$ rows, say $B$ is $n \times m$, so $AB$ is $n \times m$ as well. But $AB$ is invertible, hence square, 
+    so $m = n$. Thus $B$ is also $n \times n$.
 
     \medskip
 
     It remains to show $B$ is invertible. Since $A$ is invertible, so is $A^{-1}$, and
     \[
-        A^{-1}(AB) = (A^{-1}A)B = IB = B.
+        A^{-1}(AB) = (A^{-1}A)B = IB = B
     \]
     Thus $B$ is a product of two invertible matrices, $A^{-1}$ and $AB$, and is therefore itself invertible.
 
     \medskip
 
-    Hence the other factor is also invertible.
+    Now assume instead that $B$ is invertible, so $B$ is $n \times n$ for some $n$. Since $AB$ is
+    defined, $A$ must have $n$ columns, say $A$ is $k \times n$, so $AB$ is $k \times n$ as well. But $AB$ is
+    invertible, hence square, so $k = n$. Thus $A$ is also $n \times n$.
+
+    \medskip
+
+    It remains to show $A$ is invertible. Since $B$ is invertible, so is $B^{-1}$, and
+    \[
+        (AB)B^{-1} = A(BB^{-1}) = AI = A
+    \]
+    Thus $A$ is a product of two invertible matrices, $AB$ and $B^{-1}$, and is therefore itself invertible.
+
+    \medskip
+
+    Hence in either case, the other factor is invertible.
 \end{proof}
 
 \end{document}
