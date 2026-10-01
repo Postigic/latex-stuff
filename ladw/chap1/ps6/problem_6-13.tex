@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $A$ be an invertible symmetric matrix. Then the inverse of $A$ is also symmetric.
+\end{claim}
+
+\begin{proof}
+    Since $A$ is invertible, there exists $A^{-1}$ that satisfies $A^{-1}A = AA^{-1} = I$. Taking the transpose 
+    of both sides of $AA^{-1} = I$ yields
+    \[
+    (AA^{-1})^T = I^T = I
+    \]
+    Since $(AA^{-1})^T = (A^{-1})^TA^T$, 
+    \[
+    (A^{-1})^TA^T = I
+    \]
+    Furthermore, since $A$ is symmetric, $A^T = A$, so 
+    \[
+    (A^{-1})^TA = I
+    \]
+    Multiplying both sides on the right by $A^{-1}$ gives
+    \[
+    ((A^{-1})^TA)A^{-1} = IA^{-1} = A^{-1}
+    \]
+    On the other hand,
+    \[
+    ((A^{-1})^TA)A^{-1} = (A^{-1})^T(AA^{-1}) = (A^{-1})^TI = (A^{-1})^T
+    \]
+    Therefore,
+    \[
+    (A^{-1})^T = A^{-1}
+    \]
+    which is the definition of symmetry.
+    
+    \medskip
+
+    Hence the inverse of $A$ is symmetric.
+\end{proof}
+
+\end{document}

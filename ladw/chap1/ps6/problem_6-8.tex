@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $A$ be an $n \times n$ matrix. If $A^2 = \mathbf{0}$ then $A$ is not invertible.
+\end{claim}
+
+\begin{proof}
+    Suppose, for contradiction, that $A$ is invertible. Then $A^{-1}$ exists and satisfies 
+    $A^{-1}A = AA^{-1} = I$. Multiplying both sides of $A^2 = \mathbf{0}$ on the right by $A^{-1}$ yields
+    \[
+    A^2A^{-1} = \mathbf{0}A^{-1} = \mathbf{0}
+    \]
+    But $A^2A^{-1} = A(AA^{-1}) = AI = A$, so $A = \mathbf{0}$. However, if $A = \mathbf{0}$, then 
+    $I = AA^{-1} = \mathbf{0}A^{-1} = \mathbf{0}$, which is a contradiction as $I \neq \mathbf{0}$.
+
+    \medskip
+
+    Hence $A$ is not invertible.
+\end{proof}
+
+\end{document}
