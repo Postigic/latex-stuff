@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\begin{lemma}
+    Let $X$ and $Y$ be subspaces of a vector space $V$. Then $X \cap Y$ is a subspace of $V$.
+\end{lemma}
+
+\begin{lemma}
+    Let $V$ be a vector space. For $X, Y \subseteq V$ the sum $X + Y$ is the collection of all vectors
+    $\mathbf{v}$ which can be represented as $\mathbf{v} = \mathbf{x} + \mathbf{y}$ for some 
+    $\mathbf{x} \in X$ and $\mathbf{y} \in Y$. If $X$ and $Y$ are subspaces of $V$, then $X + Y$ is a subspace 
+    of $V$.
+\end{lemma}
+
+\begin{claim}
+    The smallest subspace of the space of $4 \times 4$ matrices that contains all upper triangular matrices 
+    and all symmetric matrices is the set of all $4 \times 4$ matrices, and the largest subspace contained 
+    in both of those subspaces is the set of all diagonal matrices.
+\end{claim}
+
+\begin{proof}
+    Let $V$ be the space of all $4 \times 4$ matrices, and let $U$ be the subspace of all upper triangular 
+    matrices and $S$ be the subspace of all symmetric matrices.
+    
+    \medskip
+
+    We first show that the largest subspace contained in both $U$ and $S$ is $U \cap S$. Since $U$ and $S$ are 
+    subspaces, by Lemma 1 $U \cap S$ is a subspace, and it is contained in both $U$ and $S$. Moreover, if $W$ is 
+    any subspace with $W \subseteq U$ and $W \subseteq S$, then $W \subseteq U \cap S$ by definition of 
+    intersection. Hence $U \cap S$ is the largest such subspace, and it remains to show that $U \cap S$ is the 
+    set of all diagonal matrices. Let
+    \[
+    A = \begin{bmatrix}
+        a_{11} & a_{12} & a_{13} & a_{14} \\
+        a_{21} & a_{22} & a_{23} & a_{24} \\
+        a_{31} & a_{32} & a_{33} & a_{34} \\
+        a_{41} & a_{42} & a_{43} & a_{44}
+    \end{bmatrix}
+    \]
+    where $A$ is an arbitrary matrix and $A \in U \cap S$. Upper triangularity annihilates everything below the 
+    principal diagonal, giving 
+    \[
+    A = \begin{bmatrix}
+        a_{11} & a_{12} & a_{13} & a_{14} \\
+        0 & a_{22} & a_{23} & a_{24} \\
+        0 & 0 & a_{33} & a_{34} \\
+        0 & 0 & 0 & a_{44}
+    \end{bmatrix}
+    \]
+    and symmetry requires that $a_{ij} = a_{ji}$, so for $i < j$ we get $a_{ij} = a_{ji} = 0$. Hence
+    \[
+    A = \begin{bmatrix}
+        a_{11} & 0 & 0 & 0 \\
+        0 & a_{22} & 0 & 0 \\
+        0 & 0 & a_{33} & 0 \\
+        0 & 0 & 0 & a_{44}
+    \end{bmatrix}
+    \]
+    Thus every matrix in $U \cap S$ is diagonal. Conversely, let $D$ be an arbitrary diagonal matrix with 
+    entries $d_{ij}$. All entries of $D$ below the principal diagonal are zero, so $D \in U$. Also 
+    $d_{ij} = 0 = d_{ji}$ whenever $i \neq j$, so $D \in S$. Thus $D \in U \cap S$, and therefore $U \cap S$ is 
+    exactly the set of all diagonal matrices.
+
+    \medskip
+
+    It remains to show that the smallest subspace containing both $U$ and $S$ is $V$. Let $X$ be any subspace 
+    containing both $U$ and $S$. By closure under addition, $X$ contains $\mathbf{u} + \mathbf{s}$ for all 
+    $\mathbf{u} \in U$ and $\mathbf{s} \in S$, so $U + S \subseteq X$. By Lemma 2, $U + S$ is a subspace of $V$, 
+    and it contains both $U$ and $S$ since 
+    $\mathbf{u} = \mathbf{u} + \mathbf{0}$ and $\mathbf{s} = \mathbf{0} + \mathbf{s}$. Hence $U + S$ is the 
+    smallest subspace containing both $U$ and $S$, and it remains to show that $U + S = V$. Let
+    \[
+    B = \begin{bmatrix}
+        a_{11} & a_{12} & a_{13} & a_{14} \\
+        a_{21} & a_{22} & a_{23} & a_{24} \\
+        a_{31} & a_{32} & a_{33} & a_{34} \\
+        a_{41} & a_{42} & a_{43} & a_{44}
+    \end{bmatrix}
+    \]
+    where $B$ is an arbitrary matrix. We must show that $B \in U + S$, i.e. $B = U_B + S_B$ for some matrices 
+    $U_B \in U$ and $S_B \in S$. Let 
+    \[
+    S_B = \begin{bmatrix}
+        0 & a_{21} & a_{31} & a_{41} \\
+        a_{21} & 0 & a_{32} & a_{42} \\
+        a_{31} & a_{32} & 0 & a_{43} \\
+        a_{41} & a_{42} & a_{43} & 0
+    \end{bmatrix}
+    \]
+    which is symmetric. Then 
+    \[
+    U_B = B - S_B = \begin{bmatrix}
+        a_{11} & a_{12} - a_{21} & a_{13} - a_{31} & a_{14} - a_{41} \\
+        0 & a_{22} & a_{23} - a_{32} & a_{24} - a_{42} \\
+        0 & 0 & a_{33} & a_{34} - a_{43} \\
+        0 & 0 & 0 & a_{44}
+    \end{bmatrix}
+    \]
+    which is upper triangular. Therefore $B = (B - S_B) + S_B$ where $U_B = B - S_B \in U$ and $S_B \in S$, so 
+    $B \in U + S$. Since $B$ was arbitrary, $V \subseteq U + S$, and combined with $U + S \subseteq V$ from 
+    Lemma 2, we can conclude that $U + S = V$.
+
+    \medskip
+
+    Hence the smallest subspace containing both $U$ and $S$ is $V$ and the largest subspace contained in $U$ 
+    and $S$ is the set of all diagonal matrices.
+\end{proof}
+
+\end{document}

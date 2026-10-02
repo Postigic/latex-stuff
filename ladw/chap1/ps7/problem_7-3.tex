@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $X$ be a subspace of a vector space $V$, and let $\mathbf{v} \in V$, $\mathbf{v} \notin X$. Then 
+    for every $\mathbf{x} \in X$, $\mathbf{x} + \mathbf{v} \notin X$.
+\end{claim}
+
+\begin{proof}
+    Let $\mathbf{x} \in X$ be arbitrary. Suppose, for contradiction, that $\mathbf{x} + \mathbf{v} \in X$. 
+    Since $X$ is closed under scalar multiplication, $(-1)\mathbf{x} \in X$, and 
+    $(-1)\mathbf{x} = -\mathbf{x}$ by the vector space axioms. Furthermore, since $X$ is closed under 
+    addition and $\mathbf{x} + \mathbf{v} \in X$, we get
+    \[
+    (\mathbf{x} + \mathbf{v}) + (-\mathbf{x}) \in X
+    \]
+    But using the vector space axioms, 
+    \[
+    \begin{aligned}
+        (\mathbf{x} + \mathbf{v}) + (-\mathbf{x}) &= (\mathbf{v} + \mathbf{x}) + (-\mathbf{x}) \\
+        &= \mathbf{v} + (\mathbf{x} + (-\mathbf{x})) \\
+        &= \mathbf{v} + \mathbf{0} \\
+        &= \mathbf{v}
+    \end{aligned}
+    \]
+    Hence $\mathbf{v} \in X$, which is a contradiction. Since $\mathbf{x}$ was arbitrary, the claim holds 
+    for all $\mathbf{x} \in X$.
+
+    \medskip
+
+    Hence $\mathbf{x} + \mathbf{v} \notin X$.
+\end{proof}
+
+\end{document}

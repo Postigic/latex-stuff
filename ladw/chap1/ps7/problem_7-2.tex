@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $V$ be a vector space. For $X, Y \subseteq V$ the sum $X + Y$ is the collection of all vectors
+    $\mathbf{v}$ which can be represented as $\mathbf{v} = \mathbf{x} + \mathbf{y}$ for some 
+    $\mathbf{x} \in X$ and $\mathbf{y} \in Y$. If $X$ and $Y$ are subspaces of $V$, then $X + Y$ is a subspace 
+    of $V$.
+\end{claim}
+
+\begin{proof}
+    By the definition of a subspace, it suffices to show that $X + Y$ is a subset of $V$, is non-empty, is 
+    closed under addition, and is closed under scalar multiplication.
+
+    \medskip
+    \textbf{Subset.} Let $\mathbf{v} \in X + Y$ be arbitrary. Then $\mathbf{v} = \mathbf{x} + \mathbf{y}$ for 
+    some $\mathbf{x} \in X$ and $\mathbf{y} \in Y$. Since $X$ and $Y$ are subspaces of $V$, 
+    $\mathbf{x}, \mathbf{y} \in V$, and since $V$ is closed under addition, 
+    $\mathbf{v} = \mathbf{x} + \mathbf{y} \in V$. Hence $X + Y$ is a subset of $V$.
+
+    \medskip
+    \textbf{Non-empty.} Since $X$ and $Y$ are subspaces of $V$, each is non-empty, so pick some 
+    $\mathbf{x} \in X$ and $\mathbf{y} \in Y$. Then $\mathbf{x} + \mathbf{y} \in X + Y$ by definition, 
+    so $X + Y$ is non-empty.
+
+    \medskip
+    \textbf{Closed under addition.} Let $\mathbf{u}, \mathbf{v} \in X + Y$ be arbitrary vectors. Then 
+    $\mathbf{u} = \mathbf{x}_1 + \mathbf{y}_1$ and $\mathbf{v} = \mathbf{x}_2 + \mathbf{y}_2$ for some 
+    $\mathbf{x}_1, \mathbf{x}_2 \in X$ and $\mathbf{y}_1, \mathbf{y}_2 \in Y$. By commutativity and 
+    associativity of addition in $V$,
+    \[
+    \mathbf{u} + \mathbf{v} = (\mathbf{x}_1 + \mathbf{x}_2) + (\mathbf{y}_1 + \mathbf{y}_2)
+    \]
+    Since $X$ and $Y$ are closed under addition, $\mathbf{x}_1 + \mathbf{x}_2 \in X$ and 
+    $\mathbf{y}_1 + \mathbf{y}_2 \in Y$, so $\mathbf{u} + \mathbf{v} \in X + Y$. Hence $X + Y$ is closed 
+    under addition.
+
+    \medskip
+    \textbf{Closed under scalar multiplication.} Let $\mathbf{u} \in X + Y$ be an arbitrary vector and let 
+    $\alpha$ be an arbitrary scalar. Then $\mathbf{u} = \mathbf{x} + \mathbf{y}$ for some $\mathbf{x} \in X$ 
+    and $\mathbf{y} \in Y$. By distributivity, 
+    \[
+    \alpha \mathbf{u} = \alpha \mathbf{x} + \alpha \mathbf{y}
+    \]
+    Since $X$ and $Y$ are closed under scalar multiplication, $\alpha \mathbf{x} \in X$ and 
+    $\alpha \mathbf{y} \in Y$, so $\alpha \mathbf{u} \in X + Y$. Hence $X + Y$ is closed under scalar 
+    multiplication.
+
+    \medskip
+
+    Hence $X + Y$ is a subspace of $V$.
+\end{proof}
+
+\end{document}

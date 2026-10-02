@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    Let $X$ and $Y$ be subspaces of a vector space $V$. Then $X \cap Y$ is a subspace of $V$.
+\end{claim}
+
+\begin{proof}
+    By the definition of a subspace, it suffices to show that $X \cap Y$ is a subset of $V$, is non-empty, is 
+    closed under addition, and is closed under scalar multiplication.
+
+    \medskip
+    \textbf{Subset.} Since $X \cap Y \subseteq X$ and $X \subseteq V$ (as $X$ is a subspace of $V$), we have 
+    $X \cap Y \subseteq V$. Hence $X \cap Y$ is a subset of $V$.
+
+    \medskip
+    \textbf{Non-empty.} Since $X$ and $Y$ are subspaces of $V$, each is non-empty, so pick some 
+    $\mathbf{x} \in X$ and $\mathbf{y} \in Y$. Since $X$ and $Y$ are closed under scalar multiplication, 
+    $\mathbf{0} = 0 \cdot \mathbf{x} \in X$ and $\mathbf{0} = 0 \cdot \mathbf{y} \in Y$. Hence 
+    $\mathbf{0} \in X \cap Y$, so $X \cap Y$ is non-empty.
+
+    \medskip
+    \textbf{Closed under addition.} Let $\mathbf{u}, \mathbf{v} \in X \cap Y$ be arbitrary vectors. Then 
+    $\mathbf{u}, \mathbf{v} \in X$ and $\mathbf{u}, \mathbf{v} \in Y$. Since $X$ and $Y$ are subspaces of 
+    $V$, they are closed under addition. Therefore $\mathbf{u} + \mathbf{v} \in X$ and 
+    $\mathbf{u} + \mathbf{v} \in Y$, so $\mathbf{u} + \mathbf{v} \in X \cap Y$. Hence $X \cap Y$ is closed 
+    under addition.
+
+    \medskip
+    \textbf{Closed under scalar multiplication.} Let $\mathbf{u} \in X \cap Y$ be an arbitrary vector and let 
+    $\alpha$ be an arbitrary scalar. Then $\mathbf{u} \in X$ and $\mathbf{u} \in Y$. Since $X$ and $Y$ are 
+    subspaces of $V$, they are closed under scalar multiplication. Therefore $\alpha \mathbf{u} \in X$ and 
+    $\alpha \mathbf{u} \in Y$, so $\alpha \mathbf{u} \in X \cap Y$. Hence $X \cap Y$ is closed under scalar 
+    multiplication.
+
+    \medskip
+
+    Hence $X \cap Y$ is a subspace of $V$.
+\end{proof}
+
+\end{document}

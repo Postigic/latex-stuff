@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+
+\begin{lemma}
+    Let $X$ be a subspace of a vector space $V$, and let $\mathbf{v} \in V$, $\mathbf{v} \notin X$. Then 
+    for every $\mathbf{w} \in X$, $\mathbf{w} + \mathbf{v} \notin X$.
+\end{lemma}
+
+\begin{claim}
+    Let $X$ and $Y$ be subspaces of a vector space $V$. Then $X \cup Y$ is a subspace if and only if 
+    $X \subseteq Y$ or $Y \subseteq X$.
+\end{claim}
+
+\begin{proof}
+    ($\Longrightarrow$) Assume $X \cup Y$ is a subspace, but neither $X \subseteq Y$ nor $Y \subseteq X$
+    for contradiction. Then there is some $\mathbf{x} \in X$, $\mathbf{x} \notin Y$ and 
+    $\mathbf{y} \in Y$, $\mathbf{y} \notin X$. Since both $\mathbf{x}$ and $\mathbf{y}$ are in 
+    $X \cup Y$, and $X \cup Y$ is closed under addition, $\mathbf{x} + \mathbf{y} \in X \cup Y$. 
+    Therefore $\mathbf{x} + \mathbf{y} \in X$ or $\mathbf{x} + \mathbf{y} \in Y$. We then split into two 
+    cases:
+
+    \medskip
+    \textit{Case 1: $\mathbf{x} + \mathbf{y} \in X$.} Apply the lemma to the subspace $X$ with 
+    $\mathbf{v} = \mathbf{y} \notin X$ and $\mathbf{w} = \mathbf{x} \in X$. Then 
+    $\mathbf{x} + \mathbf{y} \notin X$, a contradiction.
+
+    \medskip
+    \textit{Case 2: $\mathbf{x} + \mathbf{y} \in Y$.} Apply the lemma to the subspace $Y$ with 
+    $\mathbf{v} = \mathbf{x} \notin Y$ and $\mathbf{w} = \mathbf{y} \in Y$. Then 
+    $\mathbf{y} + \mathbf{x} = \mathbf{x} + \mathbf{y} \notin Y$, a contradiction.
+
+    \medskip
+
+    In either case, we have a contradiction, so  $X \subseteq Y$ or $Y \subseteq X$.
+
+    \medskip
+
+    ($\Longleftarrow$) Assume $X \subseteq Y$ or $Y \subseteq X$. WLOG, suppose $X \subseteq Y$. Then 
+    $X \cup Y = Y$, which is a subspace.
+
+    \medskip
+
+    Hence $X \cup Y$ is a subspace if and only if $X \subseteq Y$ or $Y \subseteq X$.
+\end{proof}
+
+\end{document}
