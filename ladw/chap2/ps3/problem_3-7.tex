@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\begin{lemma}
+    A matrix $A$ is invertible if and only if its echelon form has a pivot in every column and every row.
+\end{lemma}
+
+\begin{lemma}
+    If a matrix $A$ is invertible, then $A^T$ is also invertible.
+\end{lemma}
+
+\begin{claim}
+    If the columns of a square $(n \times n)$ matrix $A$ are linearly independent, so are the rows of $A^3$.
+\end{claim}
+
+% i think this proof and problem_3-6's proof are way overcomplicated (because i'm stupid), but i'm too lazy to 
+% rewrite both of them AND i think they're still correct so...
+\begin{proof}
+    Suppose $A^3\mathbf{x} = \mathbf{0}$. We first show that $\mathbf{x} = \mathbf{0}$. Let 
+    $\mathbf{y} = A\mathbf{x}$ and $\mathbf{z} = A\mathbf{y}$, so 
+    \[
+    \mathbf{0} = A^3\mathbf{x} = A(A(A\mathbf{x})) = A(A\mathbf{y}) = A\mathbf{z}
+    \]
+    Since the columns of $A$ are linearly independent, $A\mathbf{z} = \mathbf{0}$ has only the trivial solution 
+    $\mathbf{z} = \mathbf{0}$. Applying linear independence of the columns of $A$ to 
+    $\mathbf{z} = A\mathbf{y} = \mathbf{0}$, we get $\mathbf{y} = \mathbf{0}$. Applying linear independence of 
+    the columns of $A$ once more to $\mathbf{y} = A\mathbf{x} = \mathbf{0}$, we get $\mathbf{x} = \mathbf{0}$.
+    Thus $A^3\mathbf{x} = \mathbf{0}$ has only the trivial solution $\mathbf{x} = \mathbf{0}$, so the columns of 
+    $A^3$ are linearly independent.
+
+    \medskip
+
+    It remains to show that the rows of $A^3$ are linearly independent. Firstly, because 
+    $A^3\mathbf{x} = \mathbf{0}$ has only the trivial solution (or in other words the trivial solution is unique), 
+    there are no free variables in the echelon form of $A^3$, so every column has a pivot. Furthermore, since there 
+    are $n$ columns, there are $n$ pivots, and by definition of a pivot there can only be at most one pivot in each 
+    row. Since there are $n$ rows, every row has a pivot. Hence by Lemma 1, $A^3$ is invertible.
+
+    \medskip
+
+    Furthermore, by Lemma 2, $(A^3)^T$ is also invertible, and by Lemma 1, $(A^3)^T$ has a pivot in every column 
+    and every row in its echelon form. Since there is a pivot in every column, there are no free variables, so 
+    $(A^3)^T\mathbf{v} = \mathbf{0}$ has only the trivial solution $\mathbf{v} = \mathbf{0}$, so the columns of 
+    $(A^3)^T$ are linearly independent. Since the columns of $(A^3)^T$ are linearly independent, the rows of 
+    $A^3$ are linearly independent by definition of transpose.
+
+    \medskip
+
+    Hence if the columns of a square matrix $A$ are linearly independent, so are the rows of $A^3$.
+\end{proof}
+
+\end{document}

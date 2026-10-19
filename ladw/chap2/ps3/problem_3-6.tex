@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+
+\begin{document}
+
+\begin{claim}
+    If the columns of a square matrix $A$ are linearly independent, so are the columns of $A^2$.
+\end{claim}
+
+\begin{proof}
+    Suppose $A^2\mathbf{x} = \mathbf{0}$. We must show that $\mathbf{x} = \mathbf{0}$. Let 
+    $\mathbf{y} = A\mathbf{x}$, so 
+    \[
+    \mathbf{0} = A^2\mathbf{x} = A(A\mathbf{x}) = A\mathbf{y}
+    \]
+    Since the columns of $A$ are linearly independent, $A\mathbf{y} = \mathbf{0}$ has only the trivial solution 
+    $\mathbf{y} = \mathbf{0}$. Applying linear independence of the columns of $A$ once more to 
+    $\mathbf{y} = A\mathbf{x} = \mathbf{0}$, we get $\mathbf{x} = \mathbf{0}$. Thus $A^2\mathbf{x} = \mathbf{0}$
+    has only the trivial solution $\mathbf{x} = \mathbf{0}$, so the columns of $A^2$ are linearly independent.
+
+    \medskip
+
+    Hence if the columns of a square matrix $A$ are linearly independent, so are the columns of $A^2$.
+\end{proof}
+
+\end{document}
