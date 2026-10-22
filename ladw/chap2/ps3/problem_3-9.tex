@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\setlength{\parindent}{0pt}
+
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+
+\begin{lemma}
+    In the reduced echelon form of a matrix, a column is a pivot column if and only if it is not a linear 
+    combination of the columns to its left.
+\end{lemma}
+
+\begin{proof}
+    Suppose the column is a pivot column. Every column to its left has a $0$ in the pivot's row, but the pivot 
+    column has a $1$ there, so no combination of them can produce it.
+
+    \medskip
+
+    Now suppose the column is not a pivot column, and there are $m$ pivots to its left. By definition of 
+    echelon form, the entries below row $m$ of the column are all $0$. The pivot columns to its left are 
+    $\mathbf{e}_1, \dots, \mathbf{e}_m$, so the column is a linear combination of them.
+\end{proof}
+
+\begin{claim}
+    The reduced echelon form of a matrix is unique, i.e. if a matrix is reduced to a reduced echelon form 
+    by two different sequences of row operations, the two resulting matrices are equal.
+\end{claim}
+
+\begin{proof}
+    Let $A$ be an arbitrary matrix, and suppose some sequence of row operations reduces $A$ to a reduced 
+    echelon form $R$ and another reduces $A$ to a reduced echelon form $S$. Row operations preserve the 
+    solution set of $A\mathbf{x} = \mathbf{0}$, so $R\mathbf{x} = \mathbf{0}$ and $S\mathbf{x} = \mathbf{0}$ 
+    have the same solutions. We show that this forces $R = S$.
+
+    \medskip
+
+    Suppose column $j$ of $R$ is not a pivot column. By the lemma, it is a combination of the columns to its 
+    left, which gives a solution $\mathbf{x}$ with a $1$ in position $j$, zeroes after it, and the negated 
+    coefficients before it. The same $\mathbf{x}$ also solves $S\mathbf{x} = \mathbf{0}$, so column $j$ of $S$ 
+    is a combination of the columns to its left, and hence not a pivot column. By symmetry, $R$ and $S$ have 
+    the same non-pivot columns, and therefore the same pivot columns (a column is either non-pivot or pivot).
+
+    \medskip
+
+    It remains to show that corresponding columns of $R$ and $S$ are equal. The $k$th pivot column of each is 
+    in the same position and equals $\mathbf{e}_k$. For a non-pivot column, we write it as a linear 
+    combination of the pivot columns to its left only, and take the corresponding solution $\mathbf{x}$ as 
+    before. Since the pivot columns of $R$ and $S$ agree and this $\mathbf{x}$ also solves 
+    $S\mathbf{x} = \mathbf{0}$, the non-pivot columns of $R$ and $S$ are equal. Therefore corresponding columns 
+    of $R$ and $S$ are equal, so $R = S$.
+
+    \medskip
+
+    Hence the reduced echelon form of a matrix is unique.
+\end{proof}
+
+\end{document}
